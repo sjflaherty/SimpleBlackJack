@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Simple Blackjack</string>
     <string name="Hit_label">Hit</string>
+    <string name="Dealer_label">Dealer</string>
 </resources>

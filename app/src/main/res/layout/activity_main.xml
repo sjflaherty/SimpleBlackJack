@@ -6,17 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/Dealer"
+        style="@style/LabelStyle"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Dealer_label"
+        />
+
+    <ImageView
+        android:id="@+id/card1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Dealer"
+        android:src="@drawable/QD"
+        />
+
+
     <Button
         android:id="@+id/Hit"
         style="@style/Button"
-        android:layout_width="100dp"
-        android:layout_height="296dp"
-        android:text="@string/Hit_label"
-        />
-
-    
-
-
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/card1"
+        android:layout_marginTop="133dp"
+        android:text="@string/Hit_label" />
 
 
 </RelativeLayout>
