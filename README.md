@@ -27,12 +27,16 @@ Estimated Hours of Work: 2
 - Status [Completed / Ongoing]
 - Player Count [2 - 4]
 - Card Deck [52]
-- Pot [0-$1000000]
+- PotValue [0-$1000000]
 - Minimum bet [$25]
 - Max play value [21]
+- Deck [ArrayList of 52 cards]
+- CurrentPlayer [Player object]
+- PlayerList [Arraylist of all players]
 ##### Methods:
 - CheckLose - check all player scores, if over 21 they are out 
 - CheckWin - called at end of all turns, closest to 21 is the winner 
+- GenerateDeck - generates deck of 52 cards 
 
 #### Player 
 ##### Attributes:
@@ -40,10 +44,14 @@ Estimated Hours of Work: 2
 - Card count [2 - 5]
 - Money [0 - $100000]
 - Score [0-50]
+- Hand [Array list of cards in player hand]
+- Name [String]
+- Playing [boolen]
 ##### Methods: 
 - DrawCard - deck decreases by one, player card count increases by one, player score increases by card value, returns nothing 
 - Stand - switches games current player to next player 
 - PlaceBet - decreases money by bet amount, adds amount to game pot values 
+- CalculateScore - returns the card score of the player 
 
 ## Functionality:
 1. Game initializes (game is ongoing, player count is set to two, card deck is initialized)
