@@ -13,9 +13,10 @@ import java.util.*;
 public class Card {
     // Each card will be one of these suites, and will have a value assigned to it
     protected static final List<String> Suites = Collections.unmodifiableList(Arrays.asList("Hearts", "Clubs", "Diamonds", "Spades"));
+    protected static final List<String> FaceCards = Collections.unmodifiableList(Arrays.asList("King", "Queen", "Jack", "Ace"));
     protected static int Value;
     protected static String Suite;
-    // Card will either be in play or in the deck 
+    // Card will either be in play or in the deck
     protected static boolean InPlay;
 
     /*
