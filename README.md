@@ -1,12 +1,12 @@
 # Simple Blackjack
-### Contrinuters: Sarah Flaherty / Patrick Sacchet
+### Contributers: Sarah Flaherty / Patrick Sacchet
 
 ## Time Estimations 
 Sarah:
 
-Estimated Lines of Code:
+Estimated Lines of Code: 200
 
-Estimated Hours of Work:
+Estimated Hours of Work: 8
 
 Patrick:
 
