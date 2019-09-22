@@ -3,12 +3,16 @@
 
 ## Time Estimations 
 Sarah:
+
 Estimated Lines of Code:
+
 Estimated Hours of Work:
 
 Patrick:
-Estimated Lines of Code:
-Estimated Hours of Work:
+
+Estimated Lines of Code: 65
+ 
+Estimated Hours of Work: 2
  
 ## Design 
 ### Classes:
@@ -25,14 +29,21 @@ Estimated Hours of Work:
 - Card Deck [52]
 - Pot [0-$1000000]
 - Minimum bet [$25]
-- Max play vlaue [21]
+- Max play value [21]
+##### Methods:
+- CheckLose - check all player scores, if over 21 they are out 
+- CheckWin - called at end of all turns, closest to 21 is the winner 
 
 #### Player 
 ##### Attributes:
 - Won [True / False]
 - Card count [2 - 5]
 - Money [0 - $100000]
-- Play value [0-50]
+- Score [0-50]
+##### Methods: 
+- DrawCard - deck decreases by one, player card count increases by one, player score increases by card value, returns nothing 
+- Stand - switches games current player to next player 
+- PlaceBet - decreases money by bet amount, adds amount to game pot values 
 
 ## Functionality:
 1. Game initializes (game is ongoing, player count is set to two, card deck is initialized)
