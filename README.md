@@ -19,7 +19,7 @@ Estimated Hours of Work: 2
 #### Card 
 ##### Attributes:
 - Suite [Hearts / Spades / Clubs / Diamonds]
-- Value [1 - 10]
+- Value [1 - 11]
 - In Play [True / False]
 
 #### Game
