@@ -16,20 +16,66 @@
 
     <ImageView
         android:id="@+id/card1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/Dealer"
         android:src="@drawable/QD" />
+
+    <ImageView
+        android:id="@+id/card2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/Dealer"
+        android:layout_toRightOf="@+id/card1"
+        android:src="@drawable/AC"
+        />
 
 
     <Button
         android:id="@+id/Hit"
         style="@style/Button"
-        android:layout_width="75dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
+
         android:layout_below="@+id/card1"
-        android:layout_marginTop="133dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+
         android:text="@string/Hit_label" />
+
+    <Button
+        android:id="@+id/Stand"
+        style="@style/Button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/Hit"
+        android:layout_marginBottom="50dp"
+        android:text="@string/Stand_label" />
+
+    <TextView
+        android:id="@+id/Player"
+        style="@style/LabelStyle"
+        android:layout_below="@+id/card3"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Player_label"
+        />
+
+    <ImageView
+        android:id="@+id/card3"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/Stand"
+        android:src="@drawable/KC"
+        />
+
+    <ImageView
+        android:id="@+id/card4"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/Stand"
+        android:layout_toRightOf="@+id/card3"
+        android:src="@drawable/JC"
+        />
 
 
 </RelativeLayout>
