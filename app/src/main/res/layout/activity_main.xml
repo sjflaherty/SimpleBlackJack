@@ -19,7 +19,8 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_below="@+id/Dealer"
-        android:src="@drawable/QD" />
+        android:src="@drawable/QD"
+        />
 
     <ImageView
         android:id="@+id/card2"
@@ -79,6 +80,3 @@
 
 
 </RelativeLayout>
-
-
-
