@@ -2,17 +2,11 @@
 ### Contributers: Sarah Flaherty / Patrick Sacchet
 
 ## Time Estimations 
-Sarah:
 
 Estimated Lines of Code: 500 Java, 300 xml
 
 Estimated Hours of Work: 8
 
-Patrick:
-
-Estimated Lines of Code: 65
- 
-Estimated Hours of Work: 2
  
 ## Design 
 ### Classes:
