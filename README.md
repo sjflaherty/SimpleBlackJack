@@ -4,7 +4,7 @@
 ## Time Estimations 
 Sarah:
 
-Estimated Lines of Code: 200
+Estimated Lines of Code: 200 Java, 200 xml
 
 Estimated Hours of Work: 8
 
