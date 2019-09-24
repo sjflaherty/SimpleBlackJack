@@ -38,7 +38,7 @@
         android:layout_height="85dp"
         android:layout_below="@+id/Dealer"
         android:layout_toRightOf="@+id/card2"
-        android:src="@drawable/aceclub"
+        android:src="@drawable/red_back"
         />
 
     <ImageView
@@ -47,7 +47,7 @@
         android:layout_height="85dp"
         android:layout_below="@+id/Dealer"
         android:layout_toRightOf="@+id/card3"
-        android:src="@drawable/aceclub"
+        android:src="@drawable/red_back"
         />
 
     <ImageView
@@ -56,7 +56,7 @@
         android:layout_height="85dp"
         android:layout_below="@+id/Dealer"
         android:layout_toRightOf="@+id/card4"
-        android:src="@drawable/aceclub"
+        android:src="@drawable/red_back"
         />
 
     <Button
@@ -107,7 +107,7 @@
         android:layout_height="85dp"
         android:layout_below="@+id/Stand"
         android:layout_toRightOf="@+id/card7"
-        android:src="@drawable/jackclub"
+        android:src="@drawable/red_back"
         />
 
     <ImageView
@@ -116,7 +116,7 @@
         android:layout_height="85dp"
         android:layout_below="@+id/Stand"
         android:layout_toRightOf="@+id/card8"
-        android:src="@drawable/jackclub"
+        android:src="@drawable/red_back"
         />
 
     <ImageView
@@ -125,7 +125,7 @@
         android:layout_height="85dp"
         android:layout_below="@+id/Stand"
         android:layout_toRightOf="@+id/card9"
-        android:src="@drawable/jackclub"
+        android:src="@drawable/red_back"
         />
 
     <TextView

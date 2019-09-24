@@ -35,17 +35,18 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (game.getPlayerHits()==2) {
             ImageView cardImage = (ImageView) findViewById(R.id.card9);
-            cardImage.setImageResource(R.drawable.twoheart);
+            cardImage.setImageResource(R.drawable.threeclub);
             game.incPlayerHits();
         }
         else if (game.getPlayerHits()==3) {
             ImageView cardImage = (ImageView) findViewById(R.id.card10);
-            cardImage.setImageResource(R.drawable.twoheart);
+            cardImage.setImageResource(R.drawable.jackdiamon);
             game.incPlayerHits();
         }
         else
         {
             buttonHit.setClickable(false);
+            buttonHit.setBackgroundColor(android.R.color.transparent);
         }
     }
 
