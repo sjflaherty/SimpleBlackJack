@@ -17,6 +17,7 @@ public class Game {
     protected static int CardDeckSize;
     protected static int PotValue;
     protected static int MinBet;
+    protected static int playerHits;
     protected static final int MaxScore = 21;
     protected static ArrayList<Card> Deck = new ArrayList<Card>();
     protected static Player CurrentPlayer;
@@ -27,14 +28,23 @@ public class Game {
      / Parameters - numplayers - number of players playing
      / Returns : None
       */
-    Game(int numplayers) {
+    Game() {
         Completed = false;
-        PlayerCount = numplayers;
         CardDeckSize = 52;
         PotValue = 0;
         MinBet = 25;
         GenerateDeck();
+        playerHits = 1;
     }
+
+    public int getPlayerHits() {
+        return playerHits;
+    }
+
+    public void incPlayerHits() {
+        playerHits = playerHits + 1;
+    }
+
 
     /*
      / Deck generator (creates the deck)
