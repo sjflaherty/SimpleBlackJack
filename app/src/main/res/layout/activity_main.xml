@@ -12,34 +12,61 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:text="@string/Dealer_label"
+        android:layout_margin="20dp"
         />
 
     <ImageView
         android:id="@+id/card1"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:layout_below="@+id/Dealer"
-        android:src="@drawable/QD"
+        android:src="@drawable/sevendiamond"
         />
 
     <ImageView
         android:id="@+id/card2"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:layout_below="@+id/Dealer"
         android:layout_toRightOf="@+id/card1"
-        android:src="@drawable/AC"
+        android:src="@drawable/aceclub"
         />
 
+    <ImageView
+        android:id="@+id/card3"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_below="@+id/Dealer"
+        android:layout_toRightOf="@+id/card2"
+        android:src="@drawable/aceclub"
+        />
+
+    <ImageView
+        android:id="@+id/card4"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_below="@+id/Dealer"
+        android:layout_toRightOf="@+id/card3"
+        android:src="@drawable/aceclub"
+        />
+
+    <ImageView
+        android:id="@+id/card5"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_below="@+id/Dealer"
+        android:layout_toRightOf="@+id/card4"
+        android:src="@drawable/aceclub"
+        />
 
     <Button
         android:id="@+id/Hit"
         style="@style/Button"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-
+        android:layout_height="100dp"
+        android:background="@android:color/holo_green_dark"
         android:layout_below="@+id/card1"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="75dp"
         android:layout_marginBottom="10dp"
 
         android:text="@string/Hit_label" />
@@ -48,35 +75,64 @@
         android:id="@+id/Stand"
         style="@style/Button"
         android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:layout_below="@id/Hit"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="75dp"
+        android:background="@android:color/holo_red_dark"
         android:text="@string/Stand_label" />
+
+    <ImageView
+        android:id="@+id/card6"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_below="@+id/Stand"
+        android:src="@drawable/kingclub"
+        />
+
+    <ImageView
+        android:id="@+id/card7"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_below="@+id/Stand"
+        android:layout_toRightOf="@+id/card6"
+        android:src="@drawable/jackclub"
+        />
+
+    <ImageView
+        android:id="@+id/card8"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_below="@+id/Stand"
+        android:layout_toRightOf="@+id/card7"
+        android:src="@drawable/jackclub"
+        />
+
+    <ImageView
+        android:id="@+id/card9"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_below="@+id/Stand"
+        android:layout_toRightOf="@+id/card8"
+        android:src="@drawable/jackclub"
+        />
+
+    <ImageView
+        android:id="@+id/card10"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_below="@+id/Stand"
+        android:layout_toRightOf="@+id/card9"
+        android:src="@drawable/jackclub"
+        />
 
     <TextView
         android:id="@+id/Player"
         style="@style/LabelStyle"
-        android:layout_below="@+id/card3"
+        android:layout_below="@+id/card6"
         android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
         android:text="@string/Player_label"
         />
-
-    <ImageView
-        android:id="@+id/card3"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_below="@+id/Stand"
-        android:src="@drawable/KC"
-        />
-
-    <ImageView
-        android:id="@+id/card4"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_below="@+id/Stand"
-        android:layout_toRightOf="@+id/card3"
-        android:src="@drawable/JC"
-        />
-
 
 </RelativeLayout>
