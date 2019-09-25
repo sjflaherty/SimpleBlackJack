@@ -131,10 +131,25 @@
     <TextView
         android:id="@+id/Player"
         style="@style/LabelStyle"
-        android:layout_below="@+id/card6"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:text="@string/Player_label"
-        />
+        android:layout_below="@+id/card7"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentLeft="true"
+        android:text="@string/Player_label" />
+
+    <TextView
+        android:id="@+id/handCount"
+        style="@style/LabelStyle"
+        android:layout_below="@+id/card7"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@+id/Player"
+        android:text="SCORE:"/>
+
 
 </RelativeLayout>

@@ -2,9 +2,12 @@ package com.example.simpleblackjack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
@@ -21,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
         game = new Game( );
         setContentView(R.layout.activity_main);
 
+    }
+
+    public void onStart( ) {
+        super.onStart();
+        Log.w( "MainActivity", "MainActivity onStart called"  );
+        displayHandCount();
     }
 
     public void addCard( View v ) {
@@ -42,16 +51,93 @@ public class MainActivity extends AppCompatActivity {
             ImageView cardImage = (ImageView) findViewById(R.id.card10);
             cardImage.setImageResource(R.drawable.jackdiamon);
             game.incPlayerHits();
+            buttonHit.setClickable(false);
+            buttonHit.setBackgroundColor(getResources().getColor(R.color.grey));
         }
         else
         {
             buttonHit.setClickable(false);
-            buttonHit.setBackgroundColor(android.R.color.transparent);
+            buttonHit.setBackgroundColor(getResources().getColor(R.color.grey));
         }
     }
 
-    public void onStart( ) {
-        super.onStart();
-        Log.w( "MainActivity", "MainActivity onStart called"  );
+
+
+    /*
+    / Returns the total sum of the hand
+    / Parameters - None
+    / Returns : None
+    */
+    public void displayHandCount() {
+        String handsum = getCardsValue();
+        //String playerSum = Integer.toString(handsum);
+        TextView handCountBox = (TextView) findViewById(R.id.handCount);
+        handCountBox.setText(handsum);
     }
-}
+
+    /*
+    / Returns the integer value of the card
+    / Parameters - None
+    / Returns : Int value sum of cards
+    */
+    public String getCardsValue() {
+
+        int sum =0;
+
+        String[] cardIDs;
+        cardIDs = new String[]{"R.id.card6", "R.id.card7", "R.id.card8", "R.id.card9", "R.id.card10"};
+        //for (int i = 0; i < cardIDs.length; i++) {
+        //int temp = getResources().getIdentifier(cardIDs[i], "id", getPackageName());
+        //    ImageView cardImage = (ImageView) findViewById(temp);
+
+        String cardName = String.valueOf(R.id.card5);
+            /*if (cardName.contains("two")) {
+                sum += 2;
+            }
+            else if (cardName.contains("three")) {
+                sum += 3;
+            }
+            else if (cardName.contains("four")) {
+                sum += 4;
+            }
+            else if (cardName.contains("five")) {
+                sum += 5;
+            }
+            else if (cardName.contains("six")) {
+                sum += 6;
+            }
+            else */
+            if (cardName.contains("seven")) {
+                sum += 7;
+            }
+            /*
+            else if (cardName.contains("eight")) {
+                sum += 8;
+            }
+            else if (cardName.contains("nine")) {
+                sum += 9;
+            }
+            else if (cardName.contains("ten")) {
+                sum += 10;
+            }
+            else if (cardName.contains("jack")) {
+                sum += 10;
+            }
+            else if (cardName.contains("queen")) {
+                sum += 10;
+            }
+            else if (cardName.contains("king")) {
+                sum += 10;
+            }
+            else if (cardName.contains("ace")) {
+                sum += 1;
+            }
+            else {
+                sum += 1000;
+            }
+        //}*/
+
+        return cardName;
+    }
+
+    }
