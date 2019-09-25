@@ -17,6 +17,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public static Game game;
+    protected static String suit;
+    protected static String rank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +34,37 @@ public class MainActivity extends AppCompatActivity {
         displayHandCount();
     }
 
+    public void stand( View v ) {
+        Log.w("MainActivity", "Inside stand");
+        Button buttonStand = (Button) findViewById(R.id.Stand);
+        buttonStand.setClickable(false);
+        buttonStand.setBackgroundColor(getResources().getColor(R.color.grey));
+
+        Button buttonHit = (Button) findViewById(R.id.Hit);
+        buttonHit.setClickable(false);
+        buttonHit.setBackgroundColor(getResources().getColor(R.color.grey));
+
+        }
+
+
+    public String getDrawableCard() //eventually will take the suit and rank
+    {
+        suit= "jack";
+        rank = "heart";
+        String drawID = "R.drawable."+suit+rank;
+        Log.w( "MainActivity", "Got Card -- "+ drawID );
+        return drawID;
+    }
+
     public void addCard( View v ) {
         Log.w( "MainActivity", "Inside addCard" );
         Button buttonHit = (Button) findViewById(R.id.Hit);
-        // go to 2nd screen
 
         if (game.getPlayerHits()==1) {
             ImageView cardImage = (ImageView) findViewById(R.id.card8);
-            cardImage.setImageResource(R.drawable.twoheart);
+            int id = getResources().getIdentifier(getDrawableCard(), "drawable", getPackageName());
+            Log.w( "MainActivity", "IN ADD CARD -- "+ id );
+            cardImage.setImageResource(id);
             game.incPlayerHits();
         }
         else if (game.getPlayerHits()==2) {
@@ -141,3 +166,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
     }
+
