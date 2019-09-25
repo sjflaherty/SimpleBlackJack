@@ -9,11 +9,23 @@
     <TextView
         android:id="@+id/Dealer"
         style="@style/LabelStyle"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/Dealer_label"
-        android:layout_margin="20dp"
-        />
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/Dealer_label" />
+
+    <TextView
+        android:id="@+id/handCountdealer"
+        style="@style/LabelStyle"
+        android:layout_above="@+id/card4"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="214dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="21dp"
+        android:layout_toRightOf="@+id/Dealer"
+        android:text="SCORE:" />
 
     <ImageView
         android:id="@+id/card1"
@@ -82,7 +94,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/holo_red_dark"
-        android:text="@string/Stand_label" />
+        android:text="@string/Stand_label"
+        android:onClick="stand"
+        />
 
     <ImageView
         android:id="@+id/card6"
@@ -132,11 +146,11 @@
         android:id="@+id/Player"
         style="@style/LabelStyle"
         android:layout_below="@+id/card7"
-        android:layout_marginTop="13dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="10dp"
         android:layout_alignParentLeft="true"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/Player_label" />
 
     <TextView
@@ -144,12 +158,12 @@
         style="@style/LabelStyle"
         android:layout_below="@+id/card7"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="250dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginLeft="215dp"
+        android:layout_marginTop="13dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="20dp"
         android:layout_toRightOf="@+id/Player"
-        android:text="SCORE:"/>
+        android:text="SCORE:" />
 
 
 </RelativeLayout>

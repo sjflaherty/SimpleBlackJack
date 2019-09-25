@@ -5,6 +5,16 @@
  */
 
 package com.example.simpleblackjack;
+import android.widget.ImageView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import java.util.*;
 
 /*
@@ -18,6 +28,7 @@ public class Game {
     protected static int PotValue;
     protected static int MinBet;
     protected static int playerHits;
+    protected static int cardValue;
     protected static final int MaxScore = 21;
     protected static ArrayList<Card> Deck = new ArrayList<Card>();
     protected static Player CurrentPlayer;
@@ -37,10 +48,20 @@ public class Game {
         playerHits = 1;
     }
 
+    /*
+    / Checks how many times the player has clicked the "Hit" button
+    / Parameters - None
+    / Returns : Number of hits
+  */
     public int getPlayerHits() {
         return playerHits;
     }
 
+    /*
+    / Increments the count of hits every time the hit button is clicked
+    / Parameters - None
+    / Returns : Number of hits+ 1
+  */
     public void incPlayerHits() {
         playerHits = playerHits + 1;
     }
