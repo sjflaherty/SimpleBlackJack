@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public void onStart( ) {
         super.onStart();
         Log.w( "MainActivity", "MainActivity onStart called"  );
-        displayHandCount();
+        //displayHandCount(0);
     }
 
     public void stand( View v ) {
@@ -47,13 +47,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-    public String getDrawableCard() //eventually will take the suit and rank
+    public String getDrawableCard()
     {
-        suit= "jack";
-        rank = "heart";
-        String drawID = "R.drawable."+suit+rank;
-        Log.w( "MainActivity", "Got Card -- "+ drawID );
-        return drawID;
+        //array of R.drawable...
+        Log.w( "MainActivity", "Got Card -- " );
+        return "aceclub";
     }
 
     public void addCard( View v ) {
@@ -62,8 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (game.getPlayerHits()==1) {
             ImageView cardImage = (ImageView) findViewById(R.id.card8);
-            int id = getResources().getIdentifier(getDrawableCard(), "drawable", getPackageName());
+            String name = getDrawableCard();
+            int id = getResources().getIdentifier(name, "drawable", getPackageName());
             Log.w( "MainActivity", "IN ADD CARD -- "+ id );
+            //int value = getCardsValue(name);
+            //displayHandCount(value);
             cardImage.setImageResource(id);
             game.incPlayerHits();
         }
@@ -93,11 +94,10 @@ public class MainActivity extends AppCompatActivity {
     / Parameters - None
     / Returns : None
     */
-    public void displayHandCount() {
-        String handsum = getCardsValue();
-        //String playerSum = Integer.toString(handsum);
+    public void displayHandCount(int value) {
+        //String handsum = getCardsValue();
         TextView handCountBox = (TextView) findViewById(R.id.handCount);
-        handCountBox.setText(handsum);
+        handCountBox.setText(value);
     }
 
     /*
@@ -105,18 +105,11 @@ public class MainActivity extends AppCompatActivity {
     / Parameters - None
     / Returns : Int value sum of cards
     */
-    public String getCardsValue() {
+    public int getCardsValue(String cardName) {
 
         int sum =0;
 
-        String[] cardIDs;
-        cardIDs = new String[]{"R.id.card6", "R.id.card7", "R.id.card8", "R.id.card9", "R.id.card10"};
-        //for (int i = 0; i < cardIDs.length; i++) {
-        //int temp = getResources().getIdentifier(cardIDs[i], "id", getPackageName());
-        //    ImageView cardImage = (ImageView) findViewById(temp);
-
-        String cardName = String.valueOf(R.id.card5);
-            /*if (cardName.contains("two")) {
+            if (cardName.contains("two")) {
                 sum += 2;
             }
             else if (cardName.contains("three")) {
@@ -131,11 +124,10 @@ public class MainActivity extends AppCompatActivity {
             else if (cardName.contains("six")) {
                 sum += 6;
             }
-            else */
-            if (cardName.contains("seven")) {
+            else if (cardName.contains("seven")) {
                 sum += 7;
             }
-            /*
+
             else if (cardName.contains("eight")) {
                 sum += 8;
             }
@@ -160,9 +152,8 @@ public class MainActivity extends AppCompatActivity {
             else {
                 sum += 1000;
             }
-        //}*/
 
-        return cardName;
+        return sum;
     }
 
     }
