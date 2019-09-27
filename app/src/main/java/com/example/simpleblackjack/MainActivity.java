@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             cardImage.setImageResource(R.drawable.threeclub);
             game.incPlayerHits();
         }
+
         else if (game.getPlayerHits()==3) {
             ImageView cardImage = (ImageView) findViewById(R.id.card10);
             cardImage.setImageResource(R.drawable.jackdiamon);
