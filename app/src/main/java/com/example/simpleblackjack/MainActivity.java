@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         game = new Game( );
+        Player player = new Player()
         setContentView(R.layout.activity_main);
 
     }
@@ -36,13 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void stand( View v ) {
         Log.w("MainActivity", "Inside stand");
+        // Create button for stand function
         Button buttonStand = (Button) findViewById(R.id.Stand);
         buttonStand.setClickable(false);
-        buttonStand.setBackgroundColor(getResources().getColor(R.color.grey));
-
+        buttonStand.setBackgroundColor(getResources().getColor(R.color.lightBlue));
+        // Create button for hit function
         Button buttonHit = (Button) findViewById(R.id.Hit);
         buttonHit.setClickable(false);
-        buttonHit.setBackgroundColor(getResources().getColor(R.color.grey));
+        buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
 
         }
 
@@ -79,12 +81,12 @@ public class MainActivity extends AppCompatActivity {
             cardImage.setImageResource(R.drawable.jackdiamon);
             game.incPlayerHits();
             buttonHit.setClickable(false);
-            buttonHit.setBackgroundColor(getResources().getColor(R.color.grey));
+            buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
         }
         else
         {
             buttonHit.setClickable(false);
-            buttonHit.setBackgroundColor(getResources().getColor(R.color.grey));
+            buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
         }
     }
 
