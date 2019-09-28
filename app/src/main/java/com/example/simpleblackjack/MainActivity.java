@@ -25,10 +25,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Initialize the game and both the player and the dealer
+        // Initialize the game and both the player and the dealer (also initializes deck)
         game = new Game( );
-        Player player = new Player(10000, 2, "Player");
-        Player dealer = new Player(10000, 2, "Dealer");
+        Player player = new Player(10000, 0, "Player");
+        Player dealer = new Player(10000, 0, "Dealer");
+        // Add both players to the player list
+        ArrayList<Player> CurrPlayers = new ArrayList<>();
+        CurrPlayers.add(player);
+        CurrPlayers.add(dealer);
+        game.addPlayers(CurrPlayers);
         setContentView(R.layout.activity_main);
 
     }
@@ -37,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         Log.w( "MainActivity", "MainActivity onStart called"  );
         //displayHandCount(0);
+    }
+
+    public void distributeCard(Player player) {
+        // Randomly grab card from deck in the game, then give it to the player and assign it to display
+        Card card = game.randomCard();
+        player.addCard(card);
     }
 
     public void generateDeck(ArrayList<Card> Deck) {

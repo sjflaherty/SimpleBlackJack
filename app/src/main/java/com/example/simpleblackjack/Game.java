@@ -105,6 +105,26 @@ public class Game {
         Log.v("Game", decksize);
     }
 
+    public void addPlayers(ArrayList<Player> PlayerList) {
+        // Add all players to the game's player list
+        for (Player player : PlayerList) {
+            this.PlayerList.add(player);
+        }
+
+    }
+
+
+
+    public Card randomCard() {
+        int deckSize = this.Deck.size();
+        Random r = new Random();
+        int pick = r.nextInt(deckSize);
+        Card card = this.Deck.get(pick);
+        this.CardDeckSize--;
+        return card;
+
+    }
+
 
 
 

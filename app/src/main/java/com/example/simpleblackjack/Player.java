@@ -47,11 +47,17 @@ public class Player {
     public int CalculateScore() {
         int score = 0;
         // Go through all cards in the players hand and calculate their current score
-        for (int i = 0; i < Hand.size(); i++) {
+        for (int i = 0; i <= Hand.size(); i++) {
             Card card = Hand.get(i);
             score += card.Value;
         }
         return score;
+    }
+
+    public void addCard(Card card) {
+        this.Hand.add(card);
+        this.CardCount++;
+        this.Score = this.CalculateScore();
     }
 
     /*
