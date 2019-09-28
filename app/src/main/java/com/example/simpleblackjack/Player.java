@@ -31,9 +31,6 @@ public class Player {
         Money = money;
         CardCount = cardcount;
         // Each player starts with two cards, then calculate score
-        for (int i = 0; i <=2; i++) {
-            Hand.add(Game.Deck.get(0));
-        }
         Score = CalculateScore();
         Playing = true;
         Name = name;
@@ -47,7 +44,7 @@ public class Player {
     public int CalculateScore() {
         int score = 0;
         // Go through all cards in the players hand and calculate their current score
-        for (int i = 0; i <= Hand.size(); i++) {
+        for (int i = 0; i < Hand.size(); i++) {
             Card card = Hand.get(i);
             score += card.Value;
         }
@@ -55,9 +52,13 @@ public class Player {
     }
 
     public void addCard(Card card) {
+        // Add the card to the player's hand, increase their card count and recalculate their score
         this.Hand.add(card);
-        this.CardCount++;
+        this.CardCount = this.Hand.size();
         this.Score = this.CalculateScore();
+    }
+    public ArrayList<Card> checkHand() {
+        return this.Hand;
     }
 
     /*
@@ -72,6 +73,10 @@ public class Player {
         }
         Money -= betvalue;
         Game.PotValue += betvalue;
+    }
+
+    public String checkPlayerName() {
+        return this.Name;
     }
 
     /*

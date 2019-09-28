@@ -29,22 +29,10 @@ public class Card {
     / Returns : None
      */
     Card(int value, String suite) {
-        if (Suites.contains(suite)) {
-            Suite = suite;
-        }
-        else {
-            // If they didn't pass a valid suite just pick one randomly
-            Random rand = new Random();
-            Suite = Suites.get(rand.nextInt(Suites.size()));
-        }
-        if (value > 10) {
-            // If value passed in is greater than 10 just randomly assign value
-            Random rand = new Random();
-            int max = 10;
-            int min = 1;
-            Value = rand.nextInt((max - min) + 1) + min;
-        }
-        InPlay = false;
+
+        this.Suite = suite;
+        this.Value = value;
+        this.InPlay = false;
     }
 
     public void updateValue(int value) {
@@ -57,6 +45,10 @@ public class Card {
 
     public void updateFilename(String filename) {
         this.Filename = filename;
+    }
+
+    public String checkFilename () {
+        return this.Filename;
     }
 
 

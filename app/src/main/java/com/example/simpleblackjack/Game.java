@@ -40,12 +40,12 @@ public class Game {
      / Returns : None
       */
     Game() {
-        Completed = false;
-        CardDeckSize = 52;
-        PotValue = 0;
-        MinBet = 25;
+        this.Completed = false;
+        this.PotValue = 0;
+        this.MinBet = 25;
         GenerateDeck();
-        playerHits = 1;
+        this.CardDeckSize = this.Deck.size();
+        this.playerHits = 1;
     }
 
     /*
@@ -74,7 +74,6 @@ public class Game {
       */
     public void GenerateDeck() {
         // Keep track of cards we've made so far
-        int cardCount = 0;
         // For all numbers two to ten, create a card with each suite type and add it to the deck
         for (int i = 2; i <= 10; i++) {
             for (String suite : Card.Suites) {
@@ -83,7 +82,6 @@ public class Game {
                     card.updateSuite(suite);
                     String filename =  Card.Values.get(i-2).toLowerCase() + suite.toLowerCase();
                     card.updateFilename(filename);
-                    cardCount++;
                     this.Deck.add(card);
                     Log.v("Game", filename);
                 }
@@ -96,7 +94,6 @@ public class Game {
                 card.updateSuite(suite);
                 String filename =  facename.toLowerCase() + suite.toLowerCase();
                 card.updateFilename(filename);
-                cardCount++;
                 this.Deck.add(card);
                 Log.v("Game", filename);
             }
@@ -110,8 +107,22 @@ public class Game {
         for (Player player : PlayerList) {
             this.PlayerList.add(player);
         }
-
     }
+
+    public ArrayList<Player> checkPlayerList() {
+        return this.PlayerList;
+    }
+
+    public void start() {
+        // Will distribute first two cards to players and calculate scores
+        for (int i =0; i <=1; i++) {
+            for (Player player : PlayerList) {
+                Card card = this.randomCard();
+                player.addCard(card);
+            }
+        }
+    }
+
 
 
 
@@ -120,7 +131,9 @@ public class Game {
         Random r = new Random();
         int pick = r.nextInt(deckSize);
         Card card = this.Deck.get(pick);
-        this.CardDeckSize--;
+        // Want to make sure we remove the card and recalculate the deck size
+        this.Deck.remove(pick);
+        this.CardDeckSize = this.Deck.size();
         return card;
 
     }
@@ -161,12 +174,4 @@ public class Game {
 
     }
 
-    /*
-     / Main function
-     / Parameters - None
-     / Returns : None
-      */
-    public static void main(String[] args) {
-        // Initialize game and all players
-    }
 }

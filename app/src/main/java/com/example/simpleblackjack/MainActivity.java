@@ -34,28 +34,78 @@ public class MainActivity extends AppCompatActivity {
         CurrPlayers.add(player);
         CurrPlayers.add(dealer);
         game.addPlayers(CurrPlayers);
+        // Distributes two cards to players
+        game.start();
         setContentView(R.layout.activity_main);
-
     }
 
     public void onStart( ) {
         super.onStart();
         Log.w( "MainActivity", "MainActivity onStart called"  );
+        //displayCards();
         //displayHandCount(0);
     }
 
-    public void distributeCard(Player player) {
-        // Randomly grab card from deck in the game, then give it to the player and assign it to display
-        Card card = game.randomCard();
-        player.addCard(card);
-    }
 
-    public void generateDeck(ArrayList<Card> Deck) {
-        // Want to go through each card in the deck and assign png name according to card name
-        for(Card card : Deck) {
+    public void displayCards() {
+        String[] cardnumbers = new String[]{"R.id.card1", "R.id.card2", "R.id.card6", "R.id.card7"};
+        int i = 0;
+        for (Player player : game.checkPlayerList())
+        {
+            // We will go through the player list, going through each hand and displaying the cards they have on the table
+            for(Card card : player.checkHand()) {
+                String idName = cardnumbers[i];
+                int id = getIdFromString(idName);
+                ImageView cardImage = (ImageView) findViewById(id);
+                String name = card.checkFilename();
+                //ImageView cardImage = (ImageView) getResources().getIdentifier(name, "drawable", getPackageName());
 
+                int idImage = getResources().getIdentifier(name, "drawable", getPackageName());
+                //int value = getCardsValue(name);
+                //displayHandCount(value);
+                cardImage.setImageResource(idImage);
+                i++;
+
+            }
         }
     }
+
+    public int getIdFromString (String idString) {
+        // Need to take in string form of card ids and get the proper id value depending on the card (so we can display images)
+        int id;
+        if(idString.equals("R.id.card1")) {
+            id = R.id.card1;
+        }
+        else if(idString.equals("R.id.card2")) {
+            id = R.id.card2;
+        }
+        else if(idString.equals("R.id.card3")) {
+            id = R.id.card3;
+        }
+        else if(idString.equals("R.id.card4")) {
+            id = R.id.card4;
+        }
+        else if(idString.equals("R.id.card5")) {
+            id = R.id.card5;
+        }
+        else if(idString.equals("R.id.card6")) {
+            id = R.id.card6;
+        }
+        else if(idString.equals("R.id.card7")) {
+            id = R.id.card7;
+        }
+        else if(idString.equals("R.id.card8")) {
+            id = R.id.card8;
+        }
+        else if(idString.equals("R.id.card9")) {
+            id = R.id.card9;
+        }
+        else {
+            id = R.id.card10;
+        }
+        return id;
+    }
+
 
 
     public void stand( View v ) {
