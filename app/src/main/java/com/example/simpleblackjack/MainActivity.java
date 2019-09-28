@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     public static Game game;
@@ -23,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Initialize the game and both the player and the dealer
         game = new Game( );
-        Player player = new Player()
+        Player player = new Player(10000, 2, "Player");
+        Player dealer = new Player(10000, 2, "Dealer");
         setContentView(R.layout.activity_main);
 
     }
@@ -34,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
         Log.w( "MainActivity", "MainActivity onStart called"  );
         //displayHandCount(0);
     }
+
+    public void generateDeck(ArrayList<Card> Deck) {
+        // Want to go through each card in the deck and assign png name according to card name
+        for(Card card : Deck) {
+
+        }
+    }
+
 
     public void stand( View v ) {
         Log.w("MainActivity", "Inside stand");

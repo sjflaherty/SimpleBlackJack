@@ -73,15 +73,41 @@ public class Game {
      / Returns : None
       */
     public void GenerateDeck() {
-        for (int j = 0; j <= 52; j++) {
+        // Keep track of cards we've made so far
+        int cardCount = 0;
+        // For all numbers two to ten, create a card with each suite type and add it to the deck
+        for (int i = 2; i <= 10; i++) {
             for (String suite : Card.Suites) {
-                for (int i = 0; i <= 10; i++) {
                     Card card = new Card(i, suite);
-                    Deck.add(card);
+                    card.updateValue(i);
+                    card.updateSuite(suite);
+                    String filename =  Card.Values.get(i-2).toLowerCase() + suite.toLowerCase();
+                    card.updateFilename(filename);
+                    cardCount++;
+                    this.Deck.add(card);
+                    Log.v("Game", filename);
                 }
             }
+        // For all face card possibilities, create and add a new card with each suite and value ten to add to deck
+        for (String facename : Card.FaceCards) {
+            for (String suite : Card.Suites) {
+                Card card = new Card(10, suite);
+                card.updateValue(10);
+                card.updateSuite(suite);
+                String filename =  facename.toLowerCase() + suite.toLowerCase();
+                card.updateFilename(filename);
+                cardCount++;
+                this.Deck.add(card);
+                Log.v("Game", filename);
+            }
         }
+        String decksize = Integer.toString(Deck.size());
+        Log.v("Game", decksize);
     }
+
+
+
+
 
     /*
      / Checks status of all players to see if any won
