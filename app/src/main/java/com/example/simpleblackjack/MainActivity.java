@@ -91,8 +91,31 @@ public class MainActivity extends AppCompatActivity {
                dealerScoreChange.setText(Integer.toString(dealerScore));
            }
         }
+    }
+
+
+    public void displayCard(String idString, String cardname) {
+        int id = getIdFromString(idString);
+        ImageView cardImage = (ImageView) findViewById(id);
+        int idImage = getResources().getIdentifier(cardname, "drawable", getPackageName());
+        cardImage.setImageResource(idImage);
+    }
+
+    public void displayScore(int score, Player currentPlayer) {
+        // If we are updating the score of the player, we chose the appropriate text view
+        if (currentPlayer.checkPlayerName().compareTo("Player") == 0) {
+            TextView playerScoreChange = (TextView) findViewById(R.id.handCount);
+            playerScoreChange.setText(Integer.toString(score));
+        }
+        // Otherwise we are changing the score of the dealer
+        else {
+            TextView dealerScoreChange = (TextView) findViewById(R.id.handCountdealer);
+            dealerScoreChange.setText(Integer.toString(score));
+        }
 
     }
+
+
 
     /**
      * Gets the id value depending on which card we are looking for
@@ -161,16 +184,29 @@ public class MainActivity extends AppCompatActivity {
         return "aceclub";
     }
 
+    /**
+     * Button tied to hit functionality, will add card to players hand
+     * @param v view for hit button
+     */
     public void addCard( View v ) {
         Log.w( "MainActivity", "Inside addCard" );
         Button buttonHit = (Button) findViewById(R.id.Hit);
-
+        Player currentPlayer = game.checkCurrentPlayer();
+        // For each hit, randomly get a card from deck, add it to players hand, then display it
         if (game.getPlayerHits()==1) {
             ImageView cardImage = (ImageView) findViewById(R.id.card8);
-            String name = getDrawableCard();
-            int id = getResources().getIdentifier(name, "drawable", getPackageName());
-            Log.w( "MainActivity", "IN ADD CARD -- "+ id );
+            Card card = game.randomCard();
+            currentPlayer.addCard(card);
+            String cardname = card.checkFilename();
+            int id = getResources().getIdentifier(cardname, "drawable", getPackageName());
+            Log.w( "MainActivity", "adding card " + cardname );
             cardImage.setImageResource(id);
+            // Calculate new score after drawing new card and display the card and new score
+            int newScore = currentPlayer.calculateScore();
+            displayCard("R.id.card8", cardname);
+            displayScore(newScore, currentPlayer);
+            // Check if the player went over 21, if they did they lost
+            game.checkLose();
             game.incPlayerHits();
         }
         else if (game.getPlayerHits()==2) {

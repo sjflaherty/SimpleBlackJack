@@ -109,6 +109,10 @@ public class Player {
         return Name;
     }
 
+    public void updatePlaying () {
+        Playing = false;
+    }
+
     /*
     / Allows player to stand, moving to next player
     / Parameters - None

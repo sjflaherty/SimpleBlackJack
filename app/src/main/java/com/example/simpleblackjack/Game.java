@@ -129,6 +129,9 @@ public class Game {
                 Log.v("Game", "Adding " + card.checkFilename() + " to " + player.checkPlayerName() + " size of hand " + player.checkHand().size());
             }
         }
+        // Then set the current player to the actual player
+        this.CurrentPlayer = this.PlayerList.get(0);
+        Log.v("Game", "current player is " + this.CurrentPlayer.checkPlayerName());
     }
 
     /**
@@ -146,12 +149,20 @@ public class Game {
         return card;
     }
 
+    /**
+     * Checks to see who is currently playing
+     * @return the player currently playing
+     */
+    public Player checkCurrentPlayer() {
+        return this.CurrentPlayer;
+    }
+
     /*
      / Checks status of all players to see if any won
      / Parameters - None
      / Returns : Player that won that round
       */
-    public Player CheckWin() {
+    public Player checkWin() {
         Player winningplayer = CurrentPlayer;
         int maxscore = winningplayer.calculateScore();
         for(Player player : this.PlayerList) {
@@ -169,12 +180,14 @@ public class Game {
      / Parameters - None
      / Returns : None
       */
-    public void CheckLose () {
-        for(Player player : this.PlayerList) {
-            if ( player.calculateScore() > MaxScore) {
-                player.Playing = false;
-            }
+    public void checkLose () {
+        // If the player went over 21 they lost
+        if(this.CurrentPlayer.calculateScore() > 21) {
+            //System.exit(0);
+            this.CurrentPlayer.updatePlaying();
+            Log.v("Game", this.CurrentPlayer.checkPlayerName() + " has lost the game");
         }
+
 
     }
 
