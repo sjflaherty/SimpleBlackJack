@@ -152,10 +152,10 @@ public class Game {
       */
     public Player CheckWin() {
         Player winningplayer = CurrentPlayer;
-        int maxscore = winningplayer.CalculateScore();
+        int maxscore = winningplayer.calculateScore();
         for(Player player : this.PlayerList) {
-            if (player.CalculateScore() > maxscore) {
-                maxscore = player.CalculateScore();
+            if (player.calculateScore() > maxscore) {
+                maxscore = player.calculateScore();
                 winningplayer = player;
             }
         }
@@ -170,7 +170,7 @@ public class Game {
       */
     public void CheckLose () {
         for(Player player : this.PlayerList) {
-            if ( player.CalculateScore() > MaxScore) {
+            if ( player.calculateScore() > MaxScore) {
                 player.Playing = false;
             }
         }

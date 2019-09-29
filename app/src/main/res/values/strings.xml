@@ -4,4 +4,6 @@
     <string name="Dealer_label">Dealer</string>
     <string name="Player_label">Player</string>
     <string name="Stand_label">Stand</string>
+    <string name="handCountdealer">SCORE</string>
+    <string name="handCount">SCORE</string>
 </resources>

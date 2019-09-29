@@ -25,7 +25,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="21dp"
         android:layout_toRightOf="@+id/Dealer"
-        android:text="SCORE:"  />
+        android:text="@string/handCountdealer"  />
 
     <ImageView
         android:id="@+id/card1"
@@ -163,7 +163,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="20dp"
         android:layout_toRightOf="@+id/Player"
-        android:text="SCORE:" />
+        android:text="@string/handCount" />
 
 
 </RelativeLayout>

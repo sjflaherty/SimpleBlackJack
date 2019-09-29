@@ -41,7 +41,7 @@ public class Player {
      * Calculates the score of the player
      * @return the score of the player
      */
-    public int CalculateScore() {
+    public int calculateScore() {
         int score = 0;
         // Go through all cards in the players hand and calculate their current score
         for (int i = 0; i < this.Hand.size(); i++) {
@@ -59,7 +59,7 @@ public class Player {
         // Add the card to the player's hand, increase their card count and recalculate their score
         this.Hand.add(card);
         this.CardCount = this.Hand.size();
-        this.Score = this.CalculateScore();
+        this.Score = this.calculateScore();
     }
 
     /**

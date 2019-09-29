@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         Log.w( "MainActivity", "MainActivity onStart called"  );
         displayCards();
-        //displayHandCount(0);
     }
 
     /**
@@ -77,7 +76,22 @@ public class MainActivity extends AppCompatActivity {
                 i++;
 
             }
+            // Now that we added both cards calculate the players initial scores
+           if(player.checkPlayerName().compareTo("Player") == 0) {
+               int playerScore = player.calculateScore();
+               //int id = getIdFromString("R.id.handCount");
+               TextView playerScoreChange = (TextView) findViewById(R.id.handCount);
+               playerScoreChange.setText(Integer.toString(playerScore));
+
+           }
+           else {
+               int dealerScore = player.calculateScore();
+               //int id = getIdFromString("R.id.Countdealer");
+               TextView dealerScoreChange = (TextView) findViewById(R.id.handCountdealer);
+               dealerScoreChange.setText(Integer.toString(dealerScore));
+           }
         }
+
     }
 
     /**
