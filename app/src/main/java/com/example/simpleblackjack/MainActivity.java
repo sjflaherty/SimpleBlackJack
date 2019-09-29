@@ -1,4 +1,5 @@
 /**
+ * Black Jack Game Simulator
  * @author Sarah Flaherty
  * @author Patrick Sacchet
  * @version 1.0
@@ -7,40 +8,50 @@ package com.example.simpleblackjack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Necessary libraries
+ */
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import java.util.Random;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.widget.Button;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     public static Game game;
 
+    /**
+     * Creates the game's app instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Initialize the game and both the player and the dealer (also initializes deck)
         game = new Game( );
-        Player player = new Player(10000, 0, "Player");
+        /**
+         * Initializes player
+         */
+        Player player = new Player( 0, "Player");
         game.addPlayer(player);
-        Player dealer = new Player(10000, 0, "Dealer");
+        /**
+         * Initializes Dealer
+         */
+        Player dealer = new Player( 0, "Dealer");
         game.addPlayer(dealer);
         // Distributes two cards to players
         game.start();
         setContentView(R.layout.activity_main);
     }
+
+    /**
+     * Checks that the app has started and displays 2 cards for each player
+     */
 
     public void onStart( ) {
         super.onStart();
@@ -106,6 +117,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Displays a card generated from the deck as an ImageView
+     * @param idString accesses the id for the card as named as a string
+     * @param cardname accesses the name of the card to be used to view corresponding image
+     */
 
     public void displayCard(String idString, String cardname) {
         int id = getIdFromString(idString);
@@ -114,6 +130,11 @@ public class MainActivity extends AppCompatActivity {
         cardImage.setImageResource(idImage);
     }
 
+    /**
+     * Displays the score in a TextView for the current hand of each player
+     * @param score is the current score of the player
+     * @param currentPlayer is the player for which the score correlates to
+     */
     public void displayScore(int score, Player currentPlayer) {
         // If we are updating the score of the player, we chose the appropriate text view
         if (currentPlayer.checkPlayerName().compareTo("Player") == 0) {
@@ -184,6 +205,8 @@ public class MainActivity extends AppCompatActivity {
         buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
 
         // dealer plays
+        game.changetoDealer();
+        game.resetPlayerHits();
         dealerHand();
 
         game.changetoUser();
@@ -199,16 +222,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-    /*
-/ Dealer plays
-/ Parameters - None
-/ Returns : none
-*/
+    /**
+     * The dealer plays his hand, chooses to hit or stand
+     */
     public void dealerHand() {
-        game.changetoDealer();
-        game.resetPlayerHits();
         Player currentPlayer = game.checkCurrentPlayer();
-
         //dealer decides what highest will be
         int[] choices = {15, 16, 17, 18, 19};
         Random rn = new Random();
@@ -224,10 +242,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /*
-    Disable both the hit and stand buttons
-    params: None
-    Return: none
+    /**
+     * Disable both the hit and stand buttons
      */
     public void disableButtons() {
          // Create button for stand function
@@ -356,23 +372,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    / Returns the total sum of the hand
-    / Parameters - None
-    / Returns : None
+    /**
+     *  Restarts with new game if the game is over
     */
-    public void displayHandCount(int value) {
-        //String handsum = getCardsValue();
-        TextView handCountBox = (TextView) findViewById(R.id.handCount);
-        handCountBox.setText(value);
-    }
-
-
-    /*
-/ Restarts with new game if the game is over
-/ Parameters - None
-/ Returns : none
-*/
     public void isOver(View v) {
         Intent intent = getIntent();
         finish();
@@ -380,11 +382,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /*
-/ Shows dialog box declaring that the player has lost
-/ Parameters - None
-/ Returns : none
-*/
+    /**
+     *Shows dialog box declaring that the player has lost
+     */
     public void lostAlert() {
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
         alertDialog.setTitle("Loss");
@@ -402,11 +402,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*
-/ Shows a dialog box alerting the player that they won
-/ Parameters - None
-/ Returns : none
-*/
+    /**
+     * Shows a dialog box alerting the player that they won
+    */
     public void wonAlert() {
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
         alertDialog.setTitle("Win!");
@@ -421,63 +419,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         alertDialog.show();
-    }
-
-
-    /*
-    / Returns the integer value of the card
-    / Parameters - None
-    / Returns : Int value sum of cards
-    */
-    public int getCardsValue(String cardName) {
-
-        int sum =0;
-
-            if (cardName.contains("two")) {
-                sum += 2;
-            }
-            else if (cardName.contains("three")) {
-                sum += 3;
-            }
-            else if (cardName.contains("four")) {
-                sum += 4;
-            }
-            else if (cardName.contains("five")) {
-                sum += 5;
-            }
-            else if (cardName.contains("six")) {
-                sum += 6;
-            }
-            else if (cardName.contains("seven")) {
-                sum += 7;
-            }
-
-            else if (cardName.contains("eight")) {
-                sum += 8;
-            }
-            else if (cardName.contains("nine")) {
-                sum += 9;
-            }
-            else if (cardName.contains("ten")) {
-                sum += 10;
-            }
-            else if (cardName.contains("jack")) {
-                sum += 10;
-            }
-            else if (cardName.contains("queen")) {
-                sum += 10;
-            }
-            else if (cardName.contains("king")) {
-                sum += 10;
-            }
-            else if (cardName.contains("ace")) {
-                sum += 1;
-            }
-            else {
-                sum += 1000;
-            }
-
-        return sum;
     }
 
     }

@@ -24,13 +24,11 @@ public class Player {
 
     /**
      * Player constructor
-     * @param money money the player starts off with
      * @param cardcount number of cards the player has
      * @param name name of the player
      */
-    Player(int money, int cardcount, String name) {
+    Player(int cardcount, String name) {
         this.Won = false;
-        this.Money = money;
         this.CardCount = cardcount;
         this.Hand = new ArrayList<Card>();
         // Each player starts with two cards, then calculate score
@@ -81,25 +79,12 @@ public class Player {
 
     /**
      * Checks the entire hand of the current player
+     * @param
      * @return the arraylist of cards in the player's hand
      */
     public ArrayList<Card> checkHand() {
         return Hand;
     }
-
-    /*
-    / Allows player to place bet
-    / Parameters - betvalue - money player would like to bet
-    / Returns : None
-     */
-    //public void PlaceBet(int betvalue) {
-    //    if (betvalue < Game.MinBet) {
-    //        System.out.println("Bet too small");
-    //        return;
-    //    }
-    //    Money -= betvalue;
-    //    Game.PotValue += betvalue;
-    //}
 
     /**
      * Checks the player's name
@@ -112,28 +97,6 @@ public class Player {
     public void updatePlaying () {
         Playing = false;
     }
-
-    /*
-    / Allows player to stand, moving to next player
-    / Parameters - None
-    / Returns : None
-     */
-    //public void Stand() {
-    //    int currplayerpos = this.PlayerList.indexOf(Game.CurrentPlayer);
-    //    Game.CurrentPlayer = Game.PlayerList.get(currplayerpos + 1);
-    //}
-
-    /*
-    / Allows player to draw card, adding to their score and number of cards, taking away from deck count
-    / Parameters - None
-    / Returns : None
-     */
-    //public void DrawCard() {
-    //   Hand.add(Game.Deck.get(0));
-    //    Game.CardDeckSize -= 1;
-    //    CardCount += 1;
-    //    CalculateScore();
-    //}
 
 
 }

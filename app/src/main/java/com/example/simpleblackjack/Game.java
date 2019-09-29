@@ -5,33 +5,46 @@
  */
 
 package com.example.simpleblackjack;
-import android.widget.ImageView;
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import java.util.*;
 
 /**
  * Represents a game instance of blackjack
  */
 public class Game {
-    // Each game will be completed or not, have a count of players, deck size, pot value, minimum bet, max score, a current player, lsit of players, and a deck of cards
+    /**
+     * Game finished or not
+     */
     protected boolean Completed;
-    protected int PlayerCount;
+
+    /**
+     * Deck size constant of 52 cards
+     */
     protected int CardDeckSize;
-    protected int PotValue;
-    protected static int MinBet;
+
+    /**
+     * How many times the player has chosen to "hit"
+     */
     protected int playerHits;
-    protected int cardValue;
+
+    /**
+     * Constant value of 21 as max score
+     */
     protected static final int MaxScore = 21;
+
+    /**
+     * An array of the cards in the deck
+     */
     protected ArrayList<Card> Deck;
+
+    /**
+     * The current player of type Player
+     */
     protected Player CurrentPlayer;
+
+    /**
+     * An array of the players ( the user and the dealer)
+     */
     protected ArrayList<Player> PlayerList;
 
     /**
@@ -39,8 +52,6 @@ public class Game {
      */
     Game() {
         this.Completed = false;
-        this.PotValue = 0;
-        MinBet = 25;
         this.Deck = new ArrayList<Card>();
         GenerateDeck();
         this.PlayerList =  new ArrayList<Player>();
@@ -176,11 +187,10 @@ public class Game {
         this.CurrentPlayer = this.PlayerList.get(0);
     }
 
-    /*
-     / Checks status of all players to see if any won
-     / Parameters - None
-     / Returns : Player that won that round
-      */
+    /**
+     * Checks status of all players to see if any won
+     * @return  Player that won that round
+     */
     public Player checkWin() {
         Player winningplayer = CurrentPlayer;
         int maxscore = winningplayer.calculateScore();
@@ -196,22 +206,19 @@ public class Game {
     }
 
 
-    /*
-     / Checks to see if any players have lost
-     / Parameters - None
-     / Returns : None
-      */
+    /**
+     * Checks to see if any players have lost
+     * @return True or False
+     */
     public boolean checkLose () {
         // If the player went over 21 they lost
-        if(this.CurrentPlayer.calculateScore() > 21) {
+        if(this.CurrentPlayer.calculateScore() > MaxScore) {
             //System.exit(0);
             this.CurrentPlayer.updatePlaying();
             Log.v("Game", this.CurrentPlayer.checkPlayerName() + " has lost the game");
             return true;
         }
         return false;
-
-
     }
 
 }
