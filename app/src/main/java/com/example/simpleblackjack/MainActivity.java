@@ -19,8 +19,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static Game game;
-    protected static String suit;
-    protected static String rank;
+    //protected static String suit;
+    //protected static String rank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +28,9 @@ public class MainActivity extends AppCompatActivity {
         // Initialize the game and both the player and the dealer (also initializes deck)
         game = new Game( );
         Player player = new Player(10000, 0, "Player");
+        game.addPlayer(player);
         Player dealer = new Player(10000, 0, "Dealer");
-        // Add both players to the player list
-        ArrayList<Player> CurrPlayers = new ArrayList<>();
-        CurrPlayers.add(player);
-        CurrPlayers.add(dealer);
-        game.addPlayers(CurrPlayers);
+        game.addPlayer(dealer);
         // Distributes two cards to players
         game.start();
         setContentView(R.layout.activity_main);
@@ -42,28 +39,41 @@ public class MainActivity extends AppCompatActivity {
     public void onStart( ) {
         super.onStart();
         Log.w( "MainActivity", "MainActivity onStart called"  );
-        //displayCards();
+        displayCards();
         //displayHandCount(0);
     }
 
 
     public void displayCards() {
-        String[] cardnumbers = new String[]{"R.id.card1", "R.id.card2", "R.id.card6", "R.id.card7"};
+        ArrayList<String> cardnumbers = new ArrayList<>();
+        cardnumbers.add("R.id.card1");
+        cardnumbers.add("R.id.card2");
+        cardnumbers.add("R.id.card6");
+        cardnumbers.add("R.id.card7");
         int i = 0;
-        for (Player player : game.checkPlayerList())
+        ArrayList<Player> playerList= game.checkPlayerList();
+        Log.v("MainActivity", "Size of player list " + Integer.toString(playerList.size()));
+        for (Player player : playerList)
         {
+            Log.v("MainActivity", "player name" + player.checkPlayerName());
             // We will go through the player list, going through each hand and displaying the cards they have on the table
-            for(Card card : player.checkHand()) {
-                String idName = cardnumbers[i];
-                int id = getIdFromString(idName);
-                ImageView cardImage = (ImageView) findViewById(id);
-                String name = card.checkFilename();
+            ArrayList<Card> playerHand = player.checkHand();
+            Log.v("MainActivity", "size of player hand" + Integer.toString(playerHand.size()));
+            for(Card card : playerHand) {
+                String idName = cardnumbers.get(i);
+                Log.v("MainActivity", idName);
+                Log.v("MainActivity", "value of i " + Integer.toString(i));
+                Log.v("MainActivity", card.checkFilename());
+                //int id = getIdFromString(idName);
+                //ImageView cardImage = (ImageView) findViewById(id);
+                //String name = card.checkFilename();
+                //Log.v("MainActivity", name);
                 //ImageView cardImage = (ImageView) getResources().getIdentifier(name, "drawable", getPackageName());
 
-                int idImage = getResources().getIdentifier(name, "drawable", getPackageName());
+                //int idImage = getResources().getIdentifier(name, "drawable", getPackageName());
                 //int value = getCardsValue(name);
                 //displayHandCount(value);
-                cardImage.setImageResource(idImage);
+                //cardImage.setImageResource(idImage);
                 i++;
 
             }

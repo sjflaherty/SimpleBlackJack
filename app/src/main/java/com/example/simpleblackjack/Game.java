@@ -22,17 +22,17 @@ import java.util.*;
  */
 public class Game {
     // Each game will be completed or not, have a count of players, deck size, pot value, minimum bet, max score, a current player, lsit of players, and a deck of cards
-    protected static boolean Completed;
-    protected static int PlayerCount;
-    protected static int CardDeckSize;
-    protected static int PotValue;
+    protected boolean Completed;
+    protected int PlayerCount;
+    protected int CardDeckSize;
+    protected int PotValue;
     protected static int MinBet;
-    protected static int playerHits;
-    protected static int cardValue;
+    protected int playerHits;
+    protected int cardValue;
     protected static final int MaxScore = 21;
-    protected static ArrayList<Card> Deck = new ArrayList<Card>();
-    protected static Player CurrentPlayer;
-    protected static ArrayList<Player> PlayerList = new ArrayList<Player>();
+    protected ArrayList<Card> Deck;
+    protected Player CurrentPlayer;
+    protected ArrayList<Player> PlayerList;
 
     /*
      / Game constructor
@@ -40,12 +40,14 @@ public class Game {
      / Returns : None
       */
     Game() {
-        this.Completed = false;
-        this.PotValue = 0;
-        this.MinBet = 25;
+        Completed = false;
+        PotValue = 0;
+        MinBet = 25;
+        Deck = new ArrayList<Card>();
         GenerateDeck();
-        this.CardDeckSize = this.Deck.size();
-        this.playerHits = 1;
+        PlayerList =  new ArrayList<Player>();
+        CardDeckSize = Deck.size();
+        playerHits = 1;
     }
 
     /*
@@ -83,7 +85,6 @@ public class Game {
                     String filename =  Card.Values.get(i-2).toLowerCase() + suite.toLowerCase();
                     card.updateFilename(filename);
                     this.Deck.add(card);
-                    Log.v("Game", filename);
                 }
             }
         // For all face card possibilities, create and add a new card with each suite and value ten to add to deck
@@ -95,30 +96,38 @@ public class Game {
                 String filename =  facename.toLowerCase() + suite.toLowerCase();
                 card.updateFilename(filename);
                 this.Deck.add(card);
-                Log.v("Game", filename);
             }
         }
         String decksize = Integer.toString(Deck.size());
-        Log.v("Game", decksize);
+
+        for(int i = 0; i< Deck.size(); i++) {
+            Log.v("Game", this.Deck.get(i).checkFilename());
+        }
+
     }
 
-    public void addPlayers(ArrayList<Player> PlayerList) {
-        // Add all players to the game's player list
-        for (Player player : PlayerList) {
-            this.PlayerList.add(player);
+    public void addPlayer(Player player) {
+        Log.v("Game", "adding this player to player list " + player.checkPlayerName());
+        this.PlayerList.add(player);
+        for(int i = 0; i < this.PlayerList.size(); i ++) {
+            Log.v("Game", "included now in list " + this.PlayerList.get(i).checkPlayerName());
         }
     }
 
     public ArrayList<Player> checkPlayerList() {
-        return this.PlayerList;
+        return PlayerList;
     }
 
     public void start() {
         // Will distribute first two cards to players and calculate scores
-        for (int i =0; i <=1; i++) {
-            for (Player player : PlayerList) {
-                Card card = this.randomCard();
-                player.addCard(card);
+        for(Iterator<Player> iterator = this.PlayerList.iterator(); iterator.hasNext();) {
+            Player currentPlayer = iterator.next();
+            Log.v("Game", "player list " + this.PlayerList.get(0).checkPlayerName() + this.PlayerList.get(1).checkPlayerName());
+            Log.v("Game", "Name of player " + currentPlayer.checkPlayerName());
+            for (int j =0; j <=1; j++) {
+                Card card = randomCard();
+                currentPlayer.addCard(card);
+                Log.v("Game", "adding " + card.checkFilename() + "to " + currentPlayer.checkPlayerName() + "size of hand " + currentPlayer.checkHand().size());
             }
         }
     }
@@ -150,7 +159,7 @@ public class Game {
     public Player CheckWin() {
         Player winningplayer = CurrentPlayer;
         int maxscore = winningplayer.CalculateScore();
-        for(Player player : Game.PlayerList) {
+        for(Player player : this.PlayerList) {
             if (player.CalculateScore() > maxscore) {
                 maxscore = player.CalculateScore();
                 winningplayer = player;
@@ -166,7 +175,7 @@ public class Game {
      / Returns : None
       */
     public void CheckLose () {
-        for(Player player : Game.PlayerList) {
+        for(Player player : this.PlayerList) {
             if ( player.CalculateScore() > MaxScore) {
                 player.Playing = false;
             }

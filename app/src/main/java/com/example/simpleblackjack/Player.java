@@ -12,13 +12,13 @@ import java.util.*;
  */
 public class Player {
     // Each player has either won or not won, has a count of cards, a hand, some money and a current score
-    protected static boolean Won;
-    protected static boolean Playing;
-    protected static int CardCount;
-    protected static ArrayList<Card> Hand = new ArrayList<Card>();
-    protected static int Money;
-    protected static int Score;
-    protected static String Name;
+    protected boolean Won;
+    protected boolean Playing;
+    protected int CardCount;
+    protected ArrayList<Card> Hand;
+    protected int Money;
+    protected int Score;
+    protected String Name;
 
     /*
     / Player constructor
@@ -27,13 +27,14 @@ public class Player {
     / Returns : None
      */
     Player(int money, int cardcount, String name) {
-        Won = false;
-        Money = money;
-        CardCount = cardcount;
+        this.Won = false;
+        this.Money = money;
+        this.CardCount = cardcount;
+        this.Hand = new ArrayList<Card>();
         // Each player starts with two cards, then calculate score
-        Score = CalculateScore();
-        Playing = true;
-        Name = name;
+        this.Score = 0;
+        this.Playing = true;
+        this.Name = name;
     }
 
     /*
@@ -58,7 +59,7 @@ public class Player {
         this.Score = this.CalculateScore();
     }
     public ArrayList<Card> checkHand() {
-        return this.Hand;
+        return Hand;
     }
 
     /*
@@ -66,17 +67,17 @@ public class Player {
     / Parameters - betvalue - money player would like to bet
     / Returns : None
      */
-    public void PlaceBet(int betvalue) {
-        if (betvalue < Game.MinBet) {
-            System.out.println("Bet too small");
-            return;
-        }
-        Money -= betvalue;
-        Game.PotValue += betvalue;
-    }
+    //public void PlaceBet(int betvalue) {
+    //    if (betvalue < Game.MinBet) {
+    //        System.out.println("Bet too small");
+    //        return;
+    //    }
+    //    Money -= betvalue;
+    //    Game.PotValue += betvalue;
+    //}
 
     public String checkPlayerName() {
-        return this.Name;
+        return Name;
     }
 
     /*
@@ -84,22 +85,22 @@ public class Player {
     / Parameters - None
     / Returns : None
      */
-    public void Stand() {
-        int currplayerpos = Game.PlayerList.indexOf(Game.CurrentPlayer);
-        Game.CurrentPlayer = Game.PlayerList.get(currplayerpos + 1);
-    }
+    //public void Stand() {
+    //    int currplayerpos = this.PlayerList.indexOf(Game.CurrentPlayer);
+    //    Game.CurrentPlayer = Game.PlayerList.get(currplayerpos + 1);
+    //}
 
     /*
     / Allows player to draw card, adding to their score and number of cards, taking away from deck count
     / Parameters - None
     / Returns : None
      */
-    public void DrawCard() {
-        Hand.add(Game.Deck.get(0));
-        Game.CardDeckSize -= 1;
-        CardCount += 1;
-        CalculateScore();
-    }
+    //public void DrawCard() {
+    //   Hand.add(Game.Deck.get(0));
+    //    Game.CardDeckSize -= 1;
+    //    CardCount += 1;
+    //    CalculateScore();
+    //}
 
 
 }
