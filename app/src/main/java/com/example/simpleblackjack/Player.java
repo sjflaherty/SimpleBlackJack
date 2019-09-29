@@ -5,6 +5,8 @@
  */
 
 package com.example.simpleblackjack;
+import android.util.Log;
+
 import java.util.*;
 
 /**
@@ -46,7 +48,22 @@ public class Player {
         // Go through all cards in the players hand and calculate their current score
         for (int i = 0; i < this.Hand.size(); i++) {
             Card card = this.Hand.get(i);
-            score += card.checkValue();
+            // If we have aAce evaluate it accordingly
+            Log.v("Player", card.checkFace());
+            if (card.checkFace().compareTo("Ace") == 0) {
+                // If 11 is too much just add one
+                if (score + 11 > 21) {
+                    score += 1;
+                }
+                // If we don't go over then add 11
+                else {
+                    score += 11;
+                }
+            }
+            // Otherwise just add the score
+            else {
+                score += card.checkValue();
+            }
         }
         return score;
     }

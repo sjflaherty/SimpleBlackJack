@@ -84,6 +84,7 @@ public class Game {
             for (String suite : Card.Suites) {
                 Card card = new Card(10, suite);
                 card.updateValue(10);
+                card.updateFace(facename);
                 card.updateSuite(suite);
                 String filename =  facename.toLowerCase() + suite.toLowerCase();
                 card.updateFilename(filename);

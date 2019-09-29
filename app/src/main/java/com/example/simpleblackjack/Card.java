@@ -17,6 +17,7 @@ public class Card {
     protected static final List<String> Values = Collections.unmodifiableList(Arrays.asList("Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"));
     protected int Value;
     protected String Suite;
+    protected String Face;
     // Need to be able to assign filenames for each card depending on value and suite
     protected String Filename;
     // Card will either be in play or in the deck
@@ -31,6 +32,7 @@ public class Card {
         this.Suite = suite;
         this.Value = value;
         this.InPlay = false;
+        this.Face = "";
     }
 
     /**
@@ -71,5 +73,28 @@ public class Card {
      */
     public int checkValue() {
         return Value;
+    }
+
+    /**
+     * Checks  the suite of the card
+     * @return the suite of the card
+     */
+    public String checkSuite() {
+        return Suite;
+    }
+
+    /**
+     * Updates face card value
+     */
+    public void updateFace(String face) {
+        Face = face;
+    }
+
+    /**
+     * Returns the value of the face of the card (if it is one)
+     * @return
+     */
+    public String checkFace() {
+        return Face;
     }
 }
