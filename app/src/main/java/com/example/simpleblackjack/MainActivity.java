@@ -7,9 +7,12 @@ package com.example.simpleblackjack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import java.util.Random;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -82,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
                //int id = getIdFromString("R.id.handCount");
                TextView playerScoreChange = (TextView) findViewById(R.id.handCount);
                playerScoreChange.setText(Integer.toString(playerScore));
+               if (playerScore ==21)
+               {
+                   disableButtons();
+                   wonAlert();
+               }
 
            }
            else {
@@ -89,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
                //int id = getIdFromString("R.id.Countdealer");
                TextView dealerScoreChange = (TextView) findViewById(R.id.handCountdealer);
                dealerScoreChange.setText(Integer.toString(dealerScore));
+               if (dealerScore == 21)
+               {
+                   disableButtons();
+                   lostAlert();
+               }
            }
         }
     }
@@ -169,9 +182,54 @@ public class MainActivity extends AppCompatActivity {
         Button buttonHit = (Button) findViewById(R.id.Hit);
         buttonHit.setClickable(false);
         buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
+
+        // dealer plays
+        dealerHand();
+
+        game.changetoUser();
+        Player user = game.checkCurrentPlayer();
+        if (game.checkWin() == user)
+        {
+            wonAlert();
+        }
+        else
+        {
+            lostAlert();
         }
 
-     public void disableButtons() {
+        }
+
+    /*
+/ Dealer plays
+/ Parameters - None
+/ Returns : none
+*/
+    public void dealerHand() {
+        game.changetoDealer();
+        game.resetPlayerHits();
+        Player currentPlayer = game.checkCurrentPlayer();
+
+        //dealer decides what highest will be
+        int[] choices = {15, 16, 17, 18, 19};
+        Random rn = new Random();
+        int randVal = rn.nextInt(5);
+
+        //to hit or to stand
+        if (currentPlayer.calculateScore() < choices[randVal])
+        {
+            //then add a card
+            addCard(null);
+        }
+
+    }
+
+
+    /*
+    Disable both the hit and stand buttons
+    params: None
+    Return: none
+     */
+    public void disableButtons() {
          // Create button for stand function
          Button buttonStand = (Button) findViewById(R.id.Stand);
          buttonStand.setClickable(false);
@@ -217,9 +275,20 @@ public class MainActivity extends AppCompatActivity {
             // Check if the player went over 21, if they did they lost
             if(game.checkLose()) {
                 disableButtons();
+                lostAlert();
                 // Throw up you lost screen
             }
             game.incPlayerHits();
+            if (newScore == 21 && currentPlayer==game.PlayerList.get(0))
+            {
+                disableButtons();
+                wonAlert();
+            }
+            else if (newScore == 21 && currentPlayer==game.PlayerList.get(1))
+            {
+                disableButtons();
+                lostAlert();
+            }
         }
         else if (game.getPlayerHits()==2) {
             ImageView cardImage = (ImageView) findViewById(R.id.card9);
@@ -236,7 +305,17 @@ public class MainActivity extends AppCompatActivity {
             // Check if the player went over 21, if they did they lost
             if(game.checkLose()) {
                 disableButtons();
-                // Throw up you lost screen
+                lostAlert();
+            }
+            if (newScore == 21 && currentPlayer==game.PlayerList.get(0))
+            {
+                disableButtons();
+                wonAlert();
+            }
+            else if (newScore == 21 && currentPlayer==game.PlayerList.get(1))
+            {
+                disableButtons();
+                lostAlert();
             }
             game.incPlayerHits();
         }
@@ -255,9 +334,19 @@ public class MainActivity extends AppCompatActivity {
             // Check if the player went over 21, if they did they lost
             if(game.checkLose()) {
                 disableButtons();
-                // Throw up you lost screen
+                lostAlert();
             }
             game.incPlayerHits();
+            if (newScore == 21 && currentPlayer==game.PlayerList.get(0))
+            {
+                disableButtons();
+                wonAlert();
+            }
+            else if (newScore == 21 && currentPlayer==game.PlayerList.get(1))
+            {
+                disableButtons();
+                lostAlert();
+            }
             buttonHit.setClickable(false);
             buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
         }
@@ -277,6 +366,63 @@ public class MainActivity extends AppCompatActivity {
         TextView handCountBox = (TextView) findViewById(R.id.handCount);
         handCountBox.setText(value);
     }
+
+
+    /*
+/ Restarts with new game if the game is over
+/ Parameters - None
+/ Returns : none
+*/
+    public void isOver(View v) {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
+
+    /*
+/ Shows dialog box declaring that the player has lost
+/ Parameters - None
+/ Returns : none
+*/
+    public void lostAlert() {
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle("Loss");
+        alertDialog.setMessage("I'm sorry you lost the game.");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "New Game",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+                    }
+                });
+        alertDialog.show();
+
+    }
+
+    /*
+/ Shows a dialog box alerting the player that they won
+/ Parameters - None
+/ Returns : none
+*/
+    public void wonAlert() {
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle("Win!");
+        alertDialog.setMessage("You won the game.");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "New Game",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+                    }
+                });
+        alertDialog.show();
+    }
+
 
     /*
     / Returns the integer value of the card

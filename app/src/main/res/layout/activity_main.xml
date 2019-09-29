@@ -165,5 +165,21 @@
         android:layout_toRightOf="@+id/Player"
         android:text="@string/handCount" />
 
+    <Button
+        android:id="@+id/NewGame"
+        style="@style/Button"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/card10"
+        android:layout_toRightOf="@+id/handCount"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/new_label"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        android:onClick="isOver"
+        />
+
 
 </RelativeLayout>

@@ -56,6 +56,15 @@ public class Game {
         return playerHits;
     }
 
+
+    /**
+     * Returns the number of times the player has hit
+     * @return the number of times the player has hit
+     */
+    public void resetPlayerHits() {
+        playerHits = 1;
+    }
+
     /**
      * Increments the count for the number of times the player hit
      */
@@ -157,9 +166,14 @@ public class Game {
         return this.CurrentPlayer;
     }
 
-    public void changeCurrentPlayer() {
+    public void changetoDealer() {
         // Grab the next player when current player stands
         this.CurrentPlayer = this.PlayerList.get(1);
+    }
+
+    public void changetoUser() {
+        // Grab the next player when current player stands
+        this.CurrentPlayer = this.PlayerList.get(0);
     }
 
     /*
@@ -171,7 +185,7 @@ public class Game {
         Player winningplayer = CurrentPlayer;
         int maxscore = winningplayer.calculateScore();
         for(Player player : this.PlayerList) {
-            if (player.calculateScore() > maxscore) {
+            if (player.calculateScore() > maxscore && player.calculateScore() <22) {
                 maxscore = player.calculateScore();
                 winningplayer = player;
             }
@@ -180,6 +194,8 @@ public class Game {
         winningplayer.Won = true;
         return winningplayer;
     }
+
+
     /*
      / Checks to see if any players have lost
      / Parameters - None

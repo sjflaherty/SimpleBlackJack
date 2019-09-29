@@ -6,4 +6,5 @@
     <string name="Stand_label">Stand</string>
     <string name="handCountdealer">SCORE</string>
     <string name="handCount">SCORE</string>
+    <string name="new_label">New Game</string>
 </resources>
