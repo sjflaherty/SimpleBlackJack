@@ -157,6 +157,11 @@ public class Game {
         return this.CurrentPlayer;
     }
 
+    public void changeCurrentPlayer() {
+        // Grab the next player when current player stands
+        this.CurrentPlayer = this.PlayerList.get(1);
+    }
+
     /*
      / Checks status of all players to see if any won
      / Parameters - None

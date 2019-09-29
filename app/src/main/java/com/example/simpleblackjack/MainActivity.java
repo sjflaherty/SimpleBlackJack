@@ -211,12 +211,34 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (game.getPlayerHits()==2) {
             ImageView cardImage = (ImageView) findViewById(R.id.card9);
-            cardImage.setImageResource(R.drawable.threeclub);
+            Card card = game.randomCard();
+            currentPlayer.addCard(card);
+            String cardname = card.checkFilename();
+            int id = getResources().getIdentifier(cardname, "drawable", getPackageName());
+            Log.w( "MainActivity", "adding card " + cardname );
+            cardImage.setImageResource(id);
+            // Calculate new score after drawing new card and display the card and new score
+            int newScore = currentPlayer.calculateScore();
+            displayCard("R.id.card9", cardname);
+            displayScore(newScore, currentPlayer);
+            // Check if the player went over 21, if they did they lost
+            game.checkLose();
             game.incPlayerHits();
         }
         else if (game.getPlayerHits()==3) {
             ImageView cardImage = (ImageView) findViewById(R.id.card10);
-            cardImage.setImageResource(R.drawable.jackspade);
+            Card card = game.randomCard();
+            currentPlayer.addCard(card);
+            String cardname = card.checkFilename();
+            int id = getResources().getIdentifier(cardname, "drawable", getPackageName());
+            Log.w( "MainActivity", "adding card " + cardname );
+            cardImage.setImageResource(id);
+            // Calculate new score after drawing new card and display the card and new score
+            int newScore = currentPlayer.calculateScore();
+            displayCard("R.id.card10", cardname);
+            displayScore(newScore, currentPlayer);
+            // Check if the player went over 21, if they did they lost
+            game.checkLose();
             game.incPlayerHits();
             buttonHit.setClickable(false);
             buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
