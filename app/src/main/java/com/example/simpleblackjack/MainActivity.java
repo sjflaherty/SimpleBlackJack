@@ -115,8 +115,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     /**
      * Gets the id value depending on which card we are looking for
      * @param idString string with card number attached (R.id.cardx)
@@ -173,6 +171,17 @@ public class MainActivity extends AppCompatActivity {
         buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
         }
 
+     public void disableButtons() {
+         // Create button for stand function
+         Button buttonStand = (Button) findViewById(R.id.Stand);
+         buttonStand.setClickable(false);
+         buttonStand.setBackgroundColor(getResources().getColor(R.color.lightBlue));
+         // Create button for hit function
+         Button buttonHit = (Button) findViewById(R.id.Hit);
+         buttonHit.setClickable(false);
+         buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
+     }
+
     /**
      * Returns drawable card string
      * @return string representing card filename
@@ -206,7 +215,10 @@ public class MainActivity extends AppCompatActivity {
             displayCard("R.id.card8", cardname);
             displayScore(newScore, currentPlayer);
             // Check if the player went over 21, if they did they lost
-            game.checkLose();
+            if(game.checkLose()) {
+                disableButtons();
+                // Throw up you lost screen
+            }
             game.incPlayerHits();
         }
         else if (game.getPlayerHits()==2) {
@@ -222,7 +234,10 @@ public class MainActivity extends AppCompatActivity {
             displayCard("R.id.card9", cardname);
             displayScore(newScore, currentPlayer);
             // Check if the player went over 21, if they did they lost
-            game.checkLose();
+            if(game.checkLose()) {
+                disableButtons();
+                // Throw up you lost screen
+            }
             game.incPlayerHits();
         }
         else if (game.getPlayerHits()==3) {
@@ -238,7 +253,10 @@ public class MainActivity extends AppCompatActivity {
             displayCard("R.id.card10", cardname);
             displayScore(newScore, currentPlayer);
             // Check if the player went over 21, if they did they lost
-            game.checkLose();
+            if(game.checkLose()) {
+                disableButtons();
+                // Throw up you lost screen
+            }
             game.incPlayerHits();
             buttonHit.setClickable(false);
             buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));

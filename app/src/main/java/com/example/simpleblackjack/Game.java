@@ -185,13 +185,15 @@ public class Game {
      / Parameters - None
      / Returns : None
       */
-    public void checkLose () {
+    public boolean checkLose () {
         // If the player went over 21 they lost
         if(this.CurrentPlayer.calculateScore() > 21) {
             //System.exit(0);
             this.CurrentPlayer.updatePlaying();
             Log.v("Game", this.CurrentPlayer.checkPlayerName() + " has lost the game");
+            return true;
         }
+        return false;
 
 
     }
