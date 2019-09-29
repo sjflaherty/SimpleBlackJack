@@ -1,3 +1,8 @@
+/**
+ * @author Sarah Flaherty
+ * @author Patrick Sacchet
+ * @version 1.0
+ */
 package com.example.simpleblackjack;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +24,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static Game game;
-    //protected static String suit;
-    //protected static String rank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,43 +46,45 @@ public class MainActivity extends AppCompatActivity {
         //displayHandCount(0);
     }
 
-
+    /**
+     * Goes through the first two distributed cards of each player then displays them on the table
+     */
     public void displayCards() {
         ArrayList<String> cardnumbers = new ArrayList<>();
-        cardnumbers.add("R.id.card1");
-        cardnumbers.add("R.id.card2");
         cardnumbers.add("R.id.card6");
         cardnumbers.add("R.id.card7");
+        cardnumbers.add("R.id.card1");
+        cardnumbers.add("R.id.card2");
         int i = 0;
         ArrayList<Player> playerList= game.checkPlayerList();
-        Log.v("MainActivity", "Size of player list " + Integer.toString(playerList.size()));
+        Log.v("MainActivity", "Size of player list " + playerList.size());
         for (Player player : playerList)
         {
-            Log.v("MainActivity", "player name" + player.checkPlayerName());
+            Log.v("MainActivity", "player name " + player.checkPlayerName());
             // We will go through the player list, going through each hand and displaying the cards they have on the table
             ArrayList<Card> playerHand = player.checkHand();
-            Log.v("MainActivity", "size of player hand" + Integer.toString(playerHand.size()));
+            Log.v("MainActivity", "size of player hand " + playerHand.size());
             for(Card card : playerHand) {
                 String idName = cardnumbers.get(i);
                 Log.v("MainActivity", idName);
-                Log.v("MainActivity", "value of i " + Integer.toString(i));
+                Log.v("MainActivity", "value of i " + i);
                 Log.v("MainActivity", card.checkFilename());
-                //int id = getIdFromString(idName);
-                //ImageView cardImage = (ImageView) findViewById(id);
-                //String name = card.checkFilename();
-                //Log.v("MainActivity", name);
-                //ImageView cardImage = (ImageView) getResources().getIdentifier(name, "drawable", getPackageName());
-
-                //int idImage = getResources().getIdentifier(name, "drawable", getPackageName());
-                //int value = getCardsValue(name);
-                //displayHandCount(value);
-                //cardImage.setImageResource(idImage);
+                int id = getIdFromString(idName);
+                ImageView cardImage = (ImageView) findViewById(id);
+                String name = card.checkFilename();
+                int idImage = getResources().getIdentifier(name, "drawable", getPackageName());
+                cardImage.setImageResource(idImage);
                 i++;
 
             }
         }
     }
 
+    /**
+     * Gets the id value depending on which card we are looking for
+     * @param idString string with card number attached (R.id.cardx)
+     * @return the id of the card looked for
+     */
     public int getIdFromString (String idString) {
         // Need to take in string form of card ids and get the proper id value depending on the card (so we can display images)
         int id;
@@ -116,10 +121,11 @@ public class MainActivity extends AppCompatActivity {
         return id;
     }
 
-
-
+    /**
+     * Creates the stand button to display
+     * @param v view of card being passed
+     */
     public void stand( View v ) {
-        Log.w("MainActivity", "Inside stand");
         // Create button for stand function
         Button buttonStand = (Button) findViewById(R.id.Stand);
         buttonStand.setClickable(false);
@@ -128,10 +134,12 @@ public class MainActivity extends AppCompatActivity {
         Button buttonHit = (Button) findViewById(R.id.Hit);
         buttonHit.setClickable(false);
         buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
-
         }
 
-
+    /**
+     * Returns drawable card string
+     * @return string representing card filename
+     */
     public String getDrawableCard()
     {
         //array of R.drawable...
@@ -148,8 +156,6 @@ public class MainActivity extends AppCompatActivity {
             String name = getDrawableCard();
             int id = getResources().getIdentifier(name, "drawable", getPackageName());
             Log.w( "MainActivity", "IN ADD CARD -- "+ id );
-            //int value = getCardsValue(name);
-            //displayHandCount(value);
             cardImage.setImageResource(id);
             game.incPlayerHits();
         }
@@ -158,22 +164,18 @@ public class MainActivity extends AppCompatActivity {
             cardImage.setImageResource(R.drawable.threeclub);
             game.incPlayerHits();
         }
-
         else if (game.getPlayerHits()==3) {
             ImageView cardImage = (ImageView) findViewById(R.id.card10);
-            cardImage.setImageResource(R.drawable.jackdiamon);
+            cardImage.setImageResource(R.drawable.jackspade);
             game.incPlayerHits();
             buttonHit.setClickable(false);
             buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
         }
-        else
-        {
+        else {
             buttonHit.setClickable(false);
             buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
         }
     }
-
-
 
     /*
     / Returns the total sum of the hand

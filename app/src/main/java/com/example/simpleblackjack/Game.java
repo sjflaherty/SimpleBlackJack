@@ -1,7 +1,7 @@
-/*
-/ Authors: Sarah Flaherty, Patrick Sacchet
-/ Date: 9/21/19
-/ CS 482
+/**
+ * @author Sarah Flaherty
+ * @author Patrick Sacchet
+ * @version 1.0
  */
 
 package com.example.simpleblackjack;
@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 import java.util.*;
 
-/*
-/ Class: Game - class will represent a instance of a game of blackjack, that is either ongoing or finished
+/**
+ * Represents a game instance of blackjack
  */
 public class Game {
     // Each game will be completed or not, have a count of players, deck size, pot value, minimum bet, max score, a current player, lsit of players, and a deck of cards
@@ -34,46 +34,38 @@ public class Game {
     protected Player CurrentPlayer;
     protected ArrayList<Player> PlayerList;
 
-    /*
-     / Game constructor
-     / Parameters - numplayers - number of players playing
-     / Returns : None
-      */
+    /**
+     * Game constructor
+     */
     Game() {
-        Completed = false;
-        PotValue = 0;
+        this.Completed = false;
+        this.PotValue = 0;
         MinBet = 25;
-        Deck = new ArrayList<Card>();
+        this.Deck = new ArrayList<Card>();
         GenerateDeck();
-        PlayerList =  new ArrayList<Player>();
-        CardDeckSize = Deck.size();
-        playerHits = 1;
+        this.PlayerList =  new ArrayList<Player>();
+        this.CardDeckSize = Deck.size();
+        this.playerHits = 1;
     }
 
-    /*
-    / Checks how many times the player has clicked the "Hit" button
-    / Parameters - None
-    / Returns : Number of hits
-  */
+    /**
+     * Returns the number of times the player has hit
+     * @return the number of times the player has hit
+     */
     public int getPlayerHits() {
         return playerHits;
     }
 
-    /*
-    / Increments the count of hits every time the hit button is clicked
-    / Parameters - None
-    / Returns : Number of hits+ 1
-  */
+    /**
+     * Increments the count for the number of times the player hit
+     */
     public void incPlayerHits() {
         playerHits = playerHits + 1;
     }
 
-
-    /*
-     / Deck generator (creates the deck)
-     / Parameters - None
-     / Returns : None
-      */
+    /**
+     * Generates a deck for the current instance of the game
+     */
     public void GenerateDeck() {
         // Keep track of cards we've made so far
         // For all numbers two to ten, create a card with each suite type and add it to the deck
@@ -98,43 +90,50 @@ public class Game {
                 this.Deck.add(card);
             }
         }
-        String decksize = Integer.toString(Deck.size());
-
         for(int i = 0; i< Deck.size(); i++) {
-            Log.v("Game", this.Deck.get(i).checkFilename());
+            Log.v("Game", "Adding card to deck " + this.Deck.get(i).checkFilename());
         }
-
     }
 
+    /**
+     * Adds a player to the current game instance
+     * @param player the player to be added to the game
+     */
     public void addPlayer(Player player) {
-        Log.v("Game", "adding this player to player list " + player.checkPlayerName());
         this.PlayerList.add(player);
         for(int i = 0; i < this.PlayerList.size(); i ++) {
             Log.v("Game", "included now in list " + this.PlayerList.get(i).checkPlayerName());
         }
     }
 
+    /**
+     * Returns the entire current player list
+     * @return the arraylist of players in the current game
+     */
     public ArrayList<Player> checkPlayerList() {
         return PlayerList;
     }
 
+    /**
+     * Begins the game by adding two cards to each player's hand
+     */
     public void start() {
         // Will distribute first two cards to players and calculate scores
-        for(Iterator<Player> iterator = this.PlayerList.iterator(); iterator.hasNext();) {
-            Player currentPlayer = iterator.next();
-            Log.v("Game", "player list " + this.PlayerList.get(0).checkPlayerName() + this.PlayerList.get(1).checkPlayerName());
-            Log.v("Game", "Name of player " + currentPlayer.checkPlayerName());
+        for(Player player : this.PlayerList) {
+            Log.v("Game", "Player list " + this.PlayerList.get(0).checkPlayerName() + " " + this.PlayerList.get(1).checkPlayerName());
+            Log.v("Game", "Name of player " + player.checkPlayerName());
             for (int j =0; j <=1; j++) {
                 Card card = randomCard();
-                currentPlayer.addCard(card);
-                Log.v("Game", "adding " + card.checkFilename() + "to " + currentPlayer.checkPlayerName() + "size of hand " + currentPlayer.checkHand().size());
+                player.addCard(card);
+                Log.v("Game", "Adding " + card.checkFilename() + " to " + player.checkPlayerName() + " size of hand " + player.checkHand().size());
             }
         }
     }
 
-
-
-
+    /**
+     * Picks a card out of the current deck at random to be given  to a player
+     * @return the card randomly chosen from the deck
+     */
     public Card randomCard() {
         int deckSize = this.Deck.size();
         Random r = new Random();
@@ -144,12 +143,7 @@ public class Game {
         this.Deck.remove(pick);
         this.CardDeckSize = this.Deck.size();
         return card;
-
     }
-
-
-
-
 
     /*
      / Checks status of all players to see if any won

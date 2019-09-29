@@ -1,14 +1,14 @@
-/*
-/ Authors: Sarah Flaherty, Patrick Sacchet
-/ Date: 9/21/19
-/ CS 482
+/**
+ * @author Sarah Flaherty
+ * @author Patrick Sacchet
+ * @version 1.0
  */
 
 package com.example.simpleblackjack;
 import java.util.*;
 
-/*
-/ Class: Card - Represents a card object in the game of blackjack
+/**
+ * Class will represent one card of the current game of blackjack
  */
 public class Card {
     // Each card will be one of these suites, and will have a value assigned to it
@@ -22,35 +22,54 @@ public class Card {
     // Card will either be in play or in the deck
     protected boolean InPlay;
 
-    /*
-    / Card constructor
-    / Parameters - value - value of card
-    / suite - suite of card
-    / Returns : None
+    /**
+     * Card constructor
+     * @param value score value assigned to the card
+     * @param suite suite that the card belongs to
      */
     Card(int value, String suite) {
-
         this.Suite = suite;
         this.Value = value;
         this.InPlay = false;
     }
 
+    /**
+     * Updates the current value of the card
+     * @param value new value for the card to have
+     */
     public void updateValue(int value) {
         Value = value;
     }
 
+    /**
+     * Updates the current suite of the card
+     * @param suite new suite to be assigned to card
+     */
     public void updateSuite(String suite) {
         Suite = suite;
     }
 
+    /**
+     * Updates the current filename belonging to the card
+     * @param filename new filename for card
+     */
     public void updateFilename(String filename) {
         Filename = filename;
     }
 
+    /**
+     * Checks the filename belonging to the card
+     * @return the filename of the card
+     */
     public String checkFilename () {
         return Filename;
     }
 
-
-
+    /**
+     * Checks the current value of the card
+     * @return the value of the card
+     */
+    public int checkValue() {
+        return Value;
+    }
 }

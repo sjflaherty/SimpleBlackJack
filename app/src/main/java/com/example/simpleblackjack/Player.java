@@ -1,14 +1,14 @@
-/*
-/ Authors: Sarah Flaherty, Patrick Sacchet
-/ Date: 9/21/19
-/ CS 482
+/**
+ * @author Sarah Flaherty
+ * @author Patrick Sacchet
+ * @version 1.0
  */
 
 package com.example.simpleblackjack;
 import java.util.*;
 
-/*
-/ Class: Player - Represents a player in blackjack
+/**
+ * Class will represent one player playing blackjack
  */
 public class Player {
     // Each player has either won or not won, has a count of cards, a hand, some money and a current score
@@ -20,11 +20,11 @@ public class Player {
     protected int Score;
     protected String Name;
 
-    /*
-    / Player constructor
-    / Parameters - money - money player starts with
-    / cardcount - number of cards player starts with
-    / Returns : None
+    /**
+     * Player constructor
+     * @param money money the player starts off with
+     * @param cardcount number of cards the player has
+     * @param name name of the player
      */
     Player(int money, int cardcount, String name) {
         this.Won = false;
@@ -37,27 +37,35 @@ public class Player {
         this.Name = name;
     }
 
-    /*
-    / Calculates score based on players current cards
-    / Parameters - None
-    / Returns : score of the player
+    /**
+     * Calculates the score of the player
+     * @return the score of the player
      */
     public int CalculateScore() {
         int score = 0;
         // Go through all cards in the players hand and calculate their current score
-        for (int i = 0; i < Hand.size(); i++) {
-            Card card = Hand.get(i);
-            score += card.Value;
+        for (int i = 0; i < this.Hand.size(); i++) {
+            Card card = this.Hand.get(i);
+            score += card.checkValue();
         }
         return score;
     }
 
+    /**
+     * Adds a card to the player's hand
+     * @param card card to be added to player's hand
+     */
     public void addCard(Card card) {
         // Add the card to the player's hand, increase their card count and recalculate their score
         this.Hand.add(card);
         this.CardCount = this.Hand.size();
         this.Score = this.CalculateScore();
     }
+
+    /**
+     * Checks the entire hand of the current player
+     * @return the arraylist of cards in the player's hand
+     */
     public ArrayList<Card> checkHand() {
         return Hand;
     }
@@ -76,6 +84,10 @@ public class Player {
     //    Game.PotValue += betvalue;
     //}
 
+    /**
+     * Checks the player's name
+     * @return the player's name
+     */
     public String checkPlayerName() {
         return Name;
     }
