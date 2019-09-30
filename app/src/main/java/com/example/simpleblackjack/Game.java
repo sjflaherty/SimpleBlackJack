@@ -53,6 +53,7 @@ public class Game {
     Game() {
         this.Completed = false;
         this.Deck = new ArrayList<Card>();
+        // Want to generate the entire deck when we start a new game 
         GenerateDeck();
         this.PlayerList =  new ArrayList<Player>();
         this.CardDeckSize = Deck.size();
@@ -66,7 +67,6 @@ public class Game {
     public int getPlayerHits() {
         return playerHits;
     }
-
 
     /**
      * Returns the number of times the player has hit
@@ -177,13 +177,19 @@ public class Game {
         return this.CurrentPlayer;
     }
 
+    /**
+     * Will change the current player to the dealer (who is second in the list)
+     */
     public void changetoDealer() {
-        // Grab the next player when current player stands
+        // Grab the dealer
         this.CurrentPlayer = this.PlayerList.get(1);
     }
 
+    /**
+     * Will change the current player to the user
+     */
     public void changetoUser() {
-        // Grab the next player when current player stands
+        // Grab the user
         this.CurrentPlayer = this.PlayerList.get(0);
     }
 
@@ -200,11 +206,11 @@ public class Game {
                 winningplayer = player;
             }
         }
+        // Set the game to completed
         Completed = true;
         winningplayer.Won = true;
         return winningplayer;
     }
-
 
     /**
      * Checks to see if any players have lost
@@ -213,12 +219,10 @@ public class Game {
     public boolean checkLose () {
         // If the player went over 21 they lost
         if(this.CurrentPlayer.calculateScore() > MaxScore) {
-            //System.exit(0);
             this.CurrentPlayer.updatePlaying();
             Log.v("Game", this.CurrentPlayer.checkPlayerName() + " has lost the game");
             return true;
         }
         return false;
     }
-
 }
