@@ -11,16 +11,44 @@ import java.util.*;
  * Class will represent one card of the current game of blackjack
  */
 public class Card {
-    // Each card will be one of these suites, and will have a value assigned to it
+    /**
+     * Each card will be one of these four suites
+     */
     protected static final List<String> Suites = Collections.unmodifiableList(Arrays.asList("Heart", "Club", "Diamond", "Spade"));
+
+    /**
+     * Some cards may actually be face cards, which case the card will have value 10
+     */
     protected static final List<String> FaceCards = Collections.unmodifiableList(Arrays.asList("King", "Queen", "Jack", "Ace"));
+
+    /**
+     * Some cards will have values two through ten and will be given respective values depending
+     */
     protected static final List<String> Values = Collections.unmodifiableList(Arrays.asList("Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"));
+
+    /**
+     * Each card will have a value
+     */
     protected int Value;
+
+    /**
+     * Each card will have a suite
+     */
     protected String Suite;
+
+    /**
+     * Some cards may have a face value
+     */
     protected String Face;
-    // Need to be able to assign filenames for each card depending on value and suite
+
+    /**
+     * Each card will have a filename for their respective png file
+     */
     protected String Filename;
-    // Card will either be in play or in the deck
+
+    /**
+     * Whether or not each card is in play or in the deck
+     */
     protected boolean InPlay;
 
     /**
@@ -40,6 +68,7 @@ public class Card {
      * @param value new value for the card to have
      */
     public void updateValue(int value) {
+
         Value = value;
     }
 
@@ -48,6 +77,7 @@ public class Card {
      * @param suite new suite to be assigned to card
      */
     public void updateSuite(String suite) {
+
         Suite = suite;
     }
 
@@ -56,6 +86,7 @@ public class Card {
      * @param filename new filename for card
      */
     public void updateFilename(String filename) {
+
         Filename = filename;
     }
 
@@ -64,6 +95,7 @@ public class Card {
      * @return the filename of the card
      */
     public String checkFilename () {
+
         return Filename;
     }
 
@@ -72,6 +104,7 @@ public class Card {
      * @return the value of the card
      */
     public int checkValue() {
+
         return Value;
     }
 
@@ -80,6 +113,7 @@ public class Card {
      * @return the suite of the card
      */
     public String checkSuite() {
+
         return Suite;
     }
 
@@ -87,6 +121,7 @@ public class Card {
      * Updates face card value
      */
     public void updateFace(String face) {
+
         Face = face;
     }
 
@@ -95,6 +130,7 @@ public class Card {
      * @return
      */
     public String checkFace() {
+
         return Face;
     }
 }
