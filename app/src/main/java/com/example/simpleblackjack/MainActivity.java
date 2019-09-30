@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Checks that the app has started and displays 2 cards for each player
      */
-
     public void onStart( ) {
         super.onStart();
         Log.w( "MainActivity", "MainActivity onStart called"  );
@@ -84,16 +83,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.v("MainActivity", card.checkFilename());
                 int id = getIdFromString(idName);
                 ImageView cardImage = (ImageView) findViewById(id);
+                // Name will give us the name of the png for that particular card
                 String name = card.checkFilename();
                 int idImage = getResources().getIdentifier(name, "drawable", getPackageName());
+                // Display the card and move on to the next card
                 cardImage.setImageResource(idImage);
                 i++;
-
             }
             // Now that we added both cards calculate the players initial scores
            if(player.checkPlayerName().compareTo("Player") == 0) {
                int playerScore = player.calculateScore();
-               //int id = getIdFromString("R.id.handCount");
                TextView playerScoreChange = (TextView) findViewById(R.id.handCount);
                playerScoreChange.setText(Integer.toString(playerScore));
                if (playerScore ==21)
@@ -101,11 +100,9 @@ public class MainActivity extends AppCompatActivity {
                    disableButtons();
                    wonAlert();
                }
-
            }
            else {
                int dealerScore = player.calculateScore();
-               //int id = getIdFromString("R.id.Countdealer");
                TextView dealerScoreChange = (TextView) findViewById(R.id.handCountdealer);
                dealerScoreChange.setText(Integer.toString(dealerScore));
                if (dealerScore == 21)
@@ -122,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
      * @param idString accesses the id for the card as named as a string
      * @param cardname accesses the name of the card to be used to view corresponding image
      */
-
     public void displayCard(String idString, String cardname) {
         int id = getIdFromString(idString);
         ImageView cardImage = (ImageView) findViewById(id);
@@ -146,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
             TextView dealerScoreChange = (TextView) findViewById(R.id.handCountdealer);
             dealerScoreChange.setText(Integer.toString(score));
         }
-
     }
 
     /**
@@ -203,12 +198,11 @@ public class MainActivity extends AppCompatActivity {
         Button buttonHit = (Button) findViewById(R.id.Hit);
         buttonHit.setClickable(false);
         buttonHit.setBackgroundColor(getResources().getColor(R.color.lightBlue));
-
-        // dealer plays
+        // Dealer plays
         game.changetoDealer();
         game.resetPlayerHits();
         dealerHand();
-
+        // Want to switch to user before we check the result
         game.changetoUser();
         Player user = game.checkCurrentPlayer();
         if (game.checkWin() == user)
@@ -219,28 +213,24 @@ public class MainActivity extends AppCompatActivity {
         {
             lostAlert();
         }
-
-        }
+    }
 
     /**
      * The dealer plays his hand, chooses to hit or stand
      */
     public void dealerHand() {
         Player currentPlayer = game.checkCurrentPlayer();
-        //dealer decides what highest will be
+        // Dealer decides what highest will be
         int[] choices = {15, 16, 17, 18, 19};
         Random rn = new Random();
         int randVal = rn.nextInt(5);
-
-        //to hit or to stand
+        // Determines whether or not to hit or stand
         if (currentPlayer.calculateScore() < choices[randVal])
         {
-            //then add a card
+            // Then add a card
             addCard(null);
         }
-
     }
-
 
     /**
      * Disable both the hit and stand buttons
@@ -257,18 +247,7 @@ public class MainActivity extends AppCompatActivity {
      }
 
     /**
-     * Returns drawable card string
-     * @return string representing card filename
-     */
-    public String getDrawableCard()
-    {
-        //array of R.drawable...
-        Log.w( "MainActivity", "Got Card -- " );
-        return "aceclub";
-    }
-
-    /**
-     * Button tied to hit functionality, will add card to players hand
+     * Button tied to hit functionality, will add card to players hand and recalculate score to display afterwords
      * @param v view for hit button
      */
     public void addCard( View v ) {
@@ -292,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
             if(game.checkLose()) {
                 disableButtons();
                 lostAlert();
-                // Throw up you lost screen
             }
             game.incPlayerHits();
             if (newScore == 21 && currentPlayer==game.PlayerList.get(0))
@@ -381,7 +359,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     /**
      *Shows dialog box declaring that the player has lost
      */
@@ -399,7 +376,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         alertDialog.show();
-
     }
 
     /**
@@ -420,6 +396,5 @@ public class MainActivity extends AppCompatActivity {
                 });
         alertDialog.show();
     }
-
-    }
+}
 
