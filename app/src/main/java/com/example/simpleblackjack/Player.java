@@ -6,7 +6,6 @@
 
 package com.example.simpleblackjack;
 import android.util.Log;
-
 import java.util.*;
 
 /**
@@ -14,12 +13,34 @@ import java.util.*;
  */
 public class Player {
     // Each player has either won or not won, has a count of cards, a hand, some money and a current score
+    /**
+     * Whether or not a player won the game
+     */
     protected boolean Won;
+
+    /**
+     * Whether the player is currently playing the game or is out
+     */
     protected boolean Playing;
+
+    /**
+     * Number of cards for each player
+     */
     protected int CardCount;
+
+    /**
+     * Each player has a hand (arraylist) of cards
+     */
     protected ArrayList<Card> Hand;
-    protected int Money;
+
+    /**
+     * Each player has their respective score
+     */
     protected int Score;
+
+    /**
+     * Each player has their respective name
+     */
     protected String Name;
 
     /**
@@ -31,7 +52,6 @@ public class Player {
         this.Won = false;
         this.CardCount = cardcount;
         this.Hand = new ArrayList<Card>();
-        // Each player starts with two cards, then calculate score
         this.Score = 0;
         this.Playing = true;
         this.Name = name;
@@ -83,6 +103,7 @@ public class Player {
      * @return the arraylist of cards in the player's hand
      */
     public ArrayList<Card> checkHand() {
+
         return Hand;
     }
 
@@ -91,12 +112,15 @@ public class Player {
      * @return the player's name
      */
     public String checkPlayerName() {
+
         return Name;
     }
 
+    /**
+     * Set a player's status to no longer playing
+     */
     public void updatePlaying () {
+
         Playing = false;
     }
-
-
 }
