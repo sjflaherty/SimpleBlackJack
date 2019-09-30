@@ -109,15 +109,6 @@ public class Card {
     }
 
     /**
-     * Checks  the suite of the card
-     * @return the suite of the card
-     */
-    public String checkSuite() {
-
-        return Suite;
-    }
-
-    /**
      * Updates face card value
      */
     public void updateFace(String face) {

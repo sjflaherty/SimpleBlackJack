@@ -256,13 +256,10 @@ public class MainActivity extends AppCompatActivity {
         Player currentPlayer = game.checkCurrentPlayer();
         // For each hit, randomly get a card from deck, add it to players hand, then display it
         if (game.getPlayerHits()==1) {
-            ImageView cardImage = (ImageView) findViewById(R.id.card8);
             Card card = game.randomCard();
             currentPlayer.addCard(card);
             String cardname = card.checkFilename();
-            int id = getResources().getIdentifier(cardname, "drawable", getPackageName());
             Log.w( "MainActivity", "adding card " + cardname );
-            cardImage.setImageResource(id);
             // Calculate new score after drawing new card and display the card and new score
             int newScore = currentPlayer.calculateScore();
             displayCard("R.id.card8", cardname);
@@ -285,13 +282,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if (game.getPlayerHits()==2) {
-            ImageView cardImage = (ImageView) findViewById(R.id.card9);
             Card card = game.randomCard();
             currentPlayer.addCard(card);
             String cardname = card.checkFilename();
-            int id = getResources().getIdentifier(cardname, "drawable", getPackageName());
             Log.w( "MainActivity", "adding card " + cardname );
-            cardImage.setImageResource(id);
             // Calculate new score after drawing new card and display the card and new score
             int newScore = currentPlayer.calculateScore();
             displayCard("R.id.card9", cardname);
@@ -314,13 +308,10 @@ public class MainActivity extends AppCompatActivity {
             game.incPlayerHits();
         }
         else if (game.getPlayerHits()==3) {
-            ImageView cardImage = (ImageView) findViewById(R.id.card10);
             Card card = game.randomCard();
             currentPlayer.addCard(card);
             String cardname = card.checkFilename();
-            int id = getResources().getIdentifier(cardname, "drawable", getPackageName());
             Log.w( "MainActivity", "adding card " + cardname );
-            cardImage.setImageResource(id);
             // Calculate new score after drawing new card and display the card and new score
             int newScore = currentPlayer.calculateScore();
             displayCard("R.id.card10", cardname);

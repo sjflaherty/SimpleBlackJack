@@ -53,7 +53,7 @@ public class Game {
     Game() {
         this.Completed = false;
         this.Deck = new ArrayList<Card>();
-        // Want to generate the entire deck when we start a new game 
+        // Want to generate the entire deck when we start a new game
         GenerateDeck();
         this.PlayerList =  new ArrayList<Player>();
         this.CardDeckSize = Deck.size();
